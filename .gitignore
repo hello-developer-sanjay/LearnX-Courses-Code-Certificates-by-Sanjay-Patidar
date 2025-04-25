@@ -1,0 +1,59 @@
+# Node.js and npm
+node_modules/
+package-lock.json
+npm-debug.log
+yarn-error.log
+
+# Vite build output
+dist/
+dist-ssr/
+*.local
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Logs
+*.log
+logs/
+*.log.*
+log/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Testing and coverage
+coverage/
+*.lcov
+
+# Bundle analysis (from rollup-plugin-visualizer)
+dist/stats.html
+
+# Vercel-specific
+.vercel/
+.vercel/output/
+
+# Miscellaneous
+*.bak
+*.backup
+*.cache
+*.pid
+*.pid.lock
