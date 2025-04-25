@@ -31,8 +31,20 @@ export default defineConfig({
         manualChunks: {
           // Split heavy dependencies into separate chunks
           vendor: ['react', 'react-dom', 'react-router-dom', 'redux', 'react-redux'],
-          codemirror: ['@uiw/react-codemirror', '@codemirror/*'],
-          animations: ['framer-motion', 'react-spring'],
+          codemirror: [
+            '@uiw/react-codemirror',
+            '@codemirror/lang-javascript',
+            '@codemirror/lang-python',
+            '@codemirror/lang-css',
+            '@codemirror/lang-html',
+            '@codemirror/lang-markdown',
+            '@codemirror/commands',
+            '@codemirror/view',
+            '@codemirror/autocomplete',
+            '@codemirror/theme-one-dark',
+            '@uiw/codemirror-theme-dracula',
+          ],
+          animations: ['framer-motion'],
         },
       },
     },
