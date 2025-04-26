@@ -66,9 +66,9 @@ const ShareButton = ({ url, title }) => {
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
   const description = encodeURIComponent(
-    'Zedemy, founded by Sanjay Patidar, offers online tech courses, certificate verification, and in-browser coding. Learn web development, AI, and more.'
+    'LearnX, founded by Sanjay Patidar, offers online tech courses, certificate verification, and in-browser coding. Learn web development, AI, and more.'
   );
-  const image = encodeURIComponent('https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png');
+  const image = encodeURIComponent('https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp');
 
   const shareLinks = [
     {
@@ -106,13 +106,13 @@ const ShareButton = ({ url, title }) => {
       platform: 'email',
       label: 'Email',
       icon: <FaEnvelope />,
-      href: `mailto:?subject=${encodedTitle}&body=Check out Zedemy: ${description}%0A${encodedUrl}`,
+      href: `mailto:?subject=${encodedTitle}&body=Check out LearnX: ${description}%0A${encodedUrl}`,
     },
   ];
 
   return (
     <ShareSection aria-labelledby="share-heading">
-      <ShareTitle id="share-heading">Share Zedemy with Your Network</ShareTitle>
+      <ShareTitle id="share-heading">Share LearnX with Your Network</ShareTitle>
       <ShareContainer>
         {shareLinks.map((link) => (
           <ShareLink
@@ -121,7 +121,7 @@ const ShareButton = ({ url, title }) => {
             target="_blank"
             rel="noopener noreferrer nofollow"
             className={link.platform}
-            aria-label={`Share Zedemy on ${link.label}`}
+            aria-label={`Share LearnX on ${link.label}`}
             onClick={link.note ? () => alert(link.note) : undefined}
           >
             {link.icon}
