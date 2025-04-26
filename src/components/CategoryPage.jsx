@@ -399,7 +399,7 @@ const CategoryPage = () => {
     const capitalizedCategory = category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
     const metaTitle = `Learn ${capitalizedCategory} - LearnX by Sanjay Patidar`;
     const metaDescription = `Explore ${capitalizedCategory} courses on LearnX, founded by Sanjay Patidar. Master skills with Indian-rooted online learning platform for career growth!`;
-    const canonicalUrl = `https://LearnX.vercel.app/category/${category}`;
+    const canonicalUrl = `https://learnx24.vercel.app/category/${category}`;
     const fallbackImage = 'https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp';
    
     const structuredData = {
@@ -424,12 +424,12 @@ const CategoryPage = () => {
             item: {
               '@type': 'CreativeWork',
               name: post.title,
-              url: `https://LearnX.vercel.app/post/${post.slug}`,
+              url: `https://learnx24.vercel.app/post/${post.slug}`,
               image: post.titleImage || fallbackImage, // Include image in structured data
               relatedLink: getRelatedPosts(post.postId).map((relatedPost) => ({
                 '@type': 'CreativeWork',
                 name: relatedPost.title,
-                url: `https://LearnX.vercel.app/post/${relatedPost.slug}`,
+                url: `https://learnx24.vercel.app/post/${relatedPost.slug}`,
               })),
             },
           })),
