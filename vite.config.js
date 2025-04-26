@@ -25,7 +25,7 @@ export default defineConfig({
         pure_funcs: ['console.info', 'console.debug', 'console.warn'], // Remove specific console methods
       },
     },
-    sourcemap: false, // Disable sourcemaps in production for smaller bundles
+    sourcemap: true, 
     rollupOptions: {
       output: {
         manualChunks: {
