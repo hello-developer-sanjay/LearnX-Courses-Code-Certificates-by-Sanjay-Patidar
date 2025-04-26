@@ -106,11 +106,11 @@ Log in to LearnX to access your personalized learning journey, curated education
  <meta property="og:title" content="Login | LearnX - Access Customized Learning, Certificates, and Expert Content" />
  <meta property="og:description" content="Log in to LearnX to access your personalized learning journey, curated educational content, and community-driven insights. Join our vibrant community founded by Sanjay Patidar, where technology meets education to deliver top-notch tutorials, articles, and user-generated blogs. Create and follow customized categories, mark completed posts, and earn certificates to validate your mastery in various subjects. Receive timely notifications on new content and stay updated with the latest educational discoveries. Experience an unparalleled learning environment that combines comprehensive resources with the transformative power of technology. Sign in now to unlock endless learning possibilities."/> 
  <meta property="og:type" content="website" />
- <meta property="og:url" content="https://learnandshare.vercel.app/login" />
+ <meta property="og:url" content="https://learnx24.vercel.app/login" />
  <meta property="og:image" content="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp" />
  <meta property="og:image:alt" content="Sanjay Patidar" />
  <meta property="og:site_name" content="Login | LearnX - Access Customized Learning, Certificates, and Expert Content" />
-  <link rel="canonical" href="https://learnandshare.vercel.app/login" />
+  <link rel="canonical" href="https://learnx24.vercel.app/login" />
 
  <meta name="twitter:card" content="summary_large_image" />
  <meta name="twitter:title" content="Login | LearnX - Access Customized Learning, Certificates, and Expert Content" />
