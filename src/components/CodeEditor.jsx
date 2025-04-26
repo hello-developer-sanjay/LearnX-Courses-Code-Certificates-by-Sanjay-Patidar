@@ -134,20 +134,20 @@ const CodeEditor = () => {
   return (
     <div className="editor-container">
       <Helmet>
-        <title>Code Editor - Customize and Download Your Code</title>
+        <title>LearnX Code Editor - Customize and Download Your Code</title>
         <meta name="description" content="Experience a powerful code editor with syntax highlighting, multiple themes, and download options. Perfect for developers and coding enthusiasts." />
         <meta name="keywords" content="code editor, syntax highlighting, code download, code themes, JavaScript, Python, CSS, HTML, Markdown" />
         
-        <meta property="og:title" content="Code Editor - Customize and Download Your Code" />
+        <meta property="og:title" content="LearnX Code Editor - Customize and Download Your Code" />
         <meta property="og:description" content="Experience a powerful code editor with syntax highlighting, multiple themes, and download options. Perfect for developers and coding enthusiasts." />
-        <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/HogwartsEdX/code-image.webp" />
+        <meta property="og:image" content="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp" />
         <meta property="og:url" content="https://learnandshare.vercel.app/editor" />
         <meta property="og:type" content="website" />
       
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Code Editor - Customize and Download Your Code" />
+        <meta name="twitter:title" content="LearnX Code Editor - Customize and Download Your Code" />
         <meta name="twitter:description" content="Experience a powerful code editor with syntax highlighting, multiple themes, and download options. Perfect for developers and coding enthusiasts." />
-        <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/HogwartsEdX/code-image.webp" />
+        <meta name="twitter:image" content="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp" />
       </Helmet>
       
       <motion.div
