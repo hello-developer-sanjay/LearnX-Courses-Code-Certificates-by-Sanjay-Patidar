@@ -397,10 +397,10 @@ const CategoryPage = () => {
 
     // Capitalize category for display
     const capitalizedCategory = category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
-    const metaTitle = `Learn ${capitalizedCategory} - Zedemy by Sanjay Patidar`;
-    const metaDescription = `Explore ${capitalizedCategory} courses on Zedemy, founded by Sanjay Patidar. Learn, code, and grow with our modern educational platform.`;
-    const canonicalUrl = `https://zedemy.vercel.app/category/${category}`;
-    const fallbackImage = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png';
+    const metaTitle = `Learn ${capitalizedCategory} - LearnX by Sanjay Patidar`;
+    const metaDescription = `Explore ${capitalizedCategory} courses on LearnX, founded by Sanjay Patidar. Master skills with Indian-rooted online learning platform for career growth!`;
+    const canonicalUrl = `https://LearnX.vercel.app/category/${category}`;
+    const fallbackImage = 'https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp';
    
     const structuredData = {
         '@context': 'https://schema.org',
@@ -410,7 +410,7 @@ const CategoryPage = () => {
         url: canonicalUrl,
         publisher: {
           '@type': 'Organization',
-          name: 'Zedemy',
+          name: 'LearnX',
           founder: {
             '@type': 'Person',
             name: 'Sanjay Patidar',
@@ -424,12 +424,12 @@ const CategoryPage = () => {
             item: {
               '@type': 'CreativeWork',
               name: post.title,
-              url: `https://zedemy.vercel.app/post/${post.slug}`,
+              url: `https://LearnX.vercel.app/post/${post.slug}`,
               image: post.titleImage || fallbackImage, // Include image in structured data
               relatedLink: getRelatedPosts(post.postId).map((relatedPost) => ({
                 '@type': 'CreativeWork',
                 name: relatedPost.title,
-                url: `https://zedemy.vercel.app/post/${relatedPost.slug}`,
+                url: `https://LearnX.vercel.app/post/${relatedPost.slug}`,
               })),
             },
           })),
@@ -445,7 +445,7 @@ const CategoryPage = () => {
         <meta name="description" content={metaDescription} />
         <meta
           name="keywords"
-          content={`${category.toLowerCase()}, zedemy, sanjay patidar, online learning, coding, education, courses`}
+          content={`${category.toLowerCase()}, LearnX, sanjay patidar, online learning, coding, education, courses`}
         />
         <meta name="author" content="Sanjay Patidar" />
         <meta name="robots" content="index, follow" />
@@ -455,13 +455,13 @@ const CategoryPage = () => {
         <meta property="og:description" content={metaDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png" />
-        <meta property="og:site_name" content="Zedemy" />
+        <meta property="og:image" content="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp" />
+        <meta property="og:site_name" content="LearnX" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={metaTitle} />
         <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png" />
-        <link rel="icon" type="image/png" href="https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png" />
+        <meta name="twitter:image" content="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp" />
+        <link rel="icon" type="image/png" href="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp" />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
           <nav className="breadcrumbs">
