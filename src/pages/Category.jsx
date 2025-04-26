@@ -87,10 +87,10 @@ const Category = () => {
     return (
         <div className="category">
             <Helmet>
-                <title>Explore Coding Categories & Follow Updates - Zedemy</title>
+                <title>Explore Coding Categories & Follow Updates - LearnX</title>
                 <meta
                     name="description"
-                    content="Browse coding categories like HTML & JavaScript on Zedemy, founded by Sanjay Patidar. Follow categories to get email updates on new courses."
+                    content="Browse coding categories like HTML & JavaScript on LearnX, founded by Sanjay Patidar. Follow categories to get email updates on new courses."
                 />
                 <meta
                     name="keywords"
@@ -99,15 +99,15 @@ const Category = () => {
                 <meta name="author" content="Sanjay Patidar" />
                 <meta name="robots" content="index, follow" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <link rel="canonical" href="https://zedemy.vercel.app/category" />
-                <meta property="og:title" content="Explore Coding Categories & Follow Updates - Zedemy" />
+                <link rel="canonical" href="https://learnx24.vercel.app/category" />
+                <meta property="og:title" content="Explore Coding Categories & Follow Updates - LearnX" />
                 <meta
                     property="og:description"
                     content="Browse coding categories like HTML & JavaScript on Zedemy, founded by Sanjay Patidar. Follow categories to get email updates on new courses."
                 />
                 <meta property="og:type" content="website" />
-                <meta property="og:url" content="https://zedemy.vercel.app/category" />
-                <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png" />
+                <meta property="og:url" content="https://learnx24.vercel.app/category" />
+                <meta property="og:image" content="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp" />
                 <meta property="og:site_name" content="Zedemy" />
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:title" content="Explore Coding Categories & Follow Updates - Zedemy" />
@@ -115,18 +115,18 @@ const Category = () => {
                     name="twitter:description"
                     content="Browse coding categories like HTML & JavaScript on Zedemy, founded by Sanjay Patidar. Follow categories to get email updates on new courses."
                 />
-                <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png" />
-                <link rel="icon" type="image/png" href="https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png" />
+                <meta name="twitter:image" content="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp" />
+                <link rel="icon" type="image/png" href="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp" />
                 <script type="application/ld+json">
                     {JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "CollectionPage",
                         "name": "Coding Categories",
                         "description": "Browse coding categories like HTML & JavaScript on Zedemy, founded by Sanjay Patidar. Follow categories to get email updates on new courses.",
-                        "url": "https://zedemy.vercel.app/category",
+                        "url": "https://learnx24.vercel.app/category",
                         "publisher": {
                             "@type": "Organization",
-                            "name": "Zedemy",
+                            "name": "LearnX",
                             "founder": {
                                 "@type": "Person",
                                 "name": "Sanjay Patidar"
@@ -140,7 +140,7 @@ const Category = () => {
                                 "item": {
                                     "@type": "Thing",
                                     "name": category.name,
-                                    "url": `https://zedemy.vercel.app/category/${category.name.toLowerCase()}`
+                                    "url": `https://learnx24.vercel.app/category/${category.name.toLowerCase()}`
                                 }
                             }))
                         }
