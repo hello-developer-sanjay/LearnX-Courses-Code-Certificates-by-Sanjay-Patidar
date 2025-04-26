@@ -323,14 +323,14 @@ const handlePreload = debounce((slug) => {
         <meta name="author" content="Sanjay Patidar" />
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="canonical" href="https://LearnX.vercel.app/explore" />
+        <link rel="canonical" href="https://learnx24.vercel.app/explore" />
         <meta property="og:title" content="Latest Programming Blog Posts - LearnX" />
         <meta
           property="og:description"
           content="Explore the latest programming blog posts on LearnX, covering HTML, JavaScript, Python, React, and more. Search and read tutorials, tips, and guides."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://LearnX.vercel.app/explore" />
+        <meta property="og:url" content="https://learnx24.vercel.app/explore" />
         <meta property="og:image" content="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp" />
         <meta property="og:site_name" content="LearnX" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -347,7 +347,7 @@ const handlePreload = debounce((slug) => {
             "@type": "CollectionPage",
             "name": "LearnX Blog",
             "description": "Explore the latest programming blog posts on LearnX, covering HTML, JavaScript, Python, React, and more.",
-            "url": "https://LearnX.vercel.app/explore",
+            "url": "https://learnx24.vercel.app/explore",
             "publisher": {
               "@type": "Organization",
               "name": "LearnX",
@@ -373,7 +373,7 @@ const handlePreload = debounce((slug) => {
                     "@type": "Person",
                     "name": post.author
                   },
-                  "url": `https://LearnX.vercel.app/post/${post.slug}`,
+                  "url": `https://learnx24.vercel.app/post/${post.slug}`,
                   "datePublished": post.createdAt || new Date().toISOString(),
                   "publisher": {
                     "@type": "Organization",
