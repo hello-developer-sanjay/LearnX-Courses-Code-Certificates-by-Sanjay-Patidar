@@ -250,7 +250,7 @@ const handlePreload = debounce((slug) => {
   // Use searchResults if available, otherwise use posts
   const displayedPosts = searchResults.length > 0 ? searchResults : posts;
   // Fallback image URL
-  const fallbackImage = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png';
+  const fallbackImage = 'https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp';
   // FAQ Structured Data
   const faqData = {
     "@context": "https://schema.org",
@@ -258,15 +258,15 @@ const handlePreload = debounce((slug) => {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What types of blog posts are available on Zedemy?",
+        "name": "What types of blog posts are available on LearnX?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Zedemy offers blog posts on various programming topics, including HTML, JavaScript, Python, React, and more, covering tutorials, tips, and best practices."
+          "text": "LearnX offers blog posts on various programming topics, including HTML, JavaScript, Python, React, and more, covering tutorials, tips, and best practices."
         }
       },
       {
         "@type": "Question",
-        "name": "How can I search for specific blog posts on Zedemy?",
+        "name": "How can I search for specific blog posts on LearnX?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Use the search bar at the top of the blog page to enter keywords related to the topic you're interested in, and relevant posts will be displayed."
@@ -274,34 +274,34 @@ const handlePreload = debounce((slug) => {
       },
       {
         "@type": "Question",
-        "name": "Are the blog posts on Zedemy free to read?",
+        "name": "Are the blog posts on LearnX free to read?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, all blog posts on Zedemy are free to read, providing accessible learning resources for everyone."
+          "text": "Yes, all blog posts on LearnX are free to read, providing accessible learning resources for everyone."
         }
       },
       {
         "@type": "Question",
-        "name": "How often are new blog posts published on Zedemy?",
+        "name": "How often are new blog posts published on LearnX?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Zedemy publishes new blog posts regularly, typically weekly, to keep you updated with the latest programming trends and tutorials."
+          "text": "LearnX publishes new blog posts regularly, typically weekly, to keep you updated with the latest programming trends and tutorials."
         }
       },
       {
         "@type": "Question",
-        "name": "Can I contribute a blog post to Zedemy?",
+        "name": "Can I contribute a blog post to LearnX?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Absolutely! Zedemy encourages community contributions. If you're a registered user, you can easily submit your blog post through the Add Post page after logging in. Simply share your insights, and our team will review and publish them as appropriate."
+          "text": "Absolutely! LearnX encourages community contributions. If you're a registered user, you can easily submit your blog post through the Add Post page after logging in. Simply share your insights, and our team will review and publish them as appropriate."
         }
       },
       {
         "@type": "Question",
-        "name": "What programming languages are covered in Zedemy's blog?",
+        "name": "What programming languages are covered in LearnX's blog?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Zedemy's blog covers a wide range of programming languages, including HTML, CSS, JavaScript, Python, Java, C++, and frameworks like React, Angular, and Vue.js."
+          "text": "LearnX's blog covers a wide range of programming languages, including HTML, CSS, JavaScript, Python, Java, C++, and frameworks like React, Angular, and Vue.js."
         }
       }
     ]
@@ -311,53 +311,53 @@ const handlePreload = debounce((slug) => {
     <Container>
       <Helmet>
         <html lang="en" />
-        <title>Latest Programming Blog Posts - Zedemy</title>
+        <title>Latest Programming Blog Posts - LearnX</title>
         <meta
           name="description"
-          content="Explore the latest programming blog posts on Zedemy, covering HTML, JavaScript, Python, React, and more. Search and read tutorials, tips, and guides."
+          content="Explore the latest programming blog posts on LearnX, covering HTML, JavaScript, Python, React, and more. Search and read tutorials, tips, and guides."
         />
         <meta
           name="keywords"
-          content="programming blog, HTML, JavaScript, Python, React, Zedemy, Sanjay Patidar, coding tutorials, tech guides"
+          content="programming blog, HTML, JavaScript, Python, React, LearnX, Sanjay Patidar, coding tutorials, tech guides"
         />
         <meta name="author" content="Sanjay Patidar" />
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="canonical" href="https://zedemy.vercel.app/explore" />
-        <meta property="og:title" content="Latest Programming Blog Posts - Zedemy" />
+        <link rel="canonical" href="https://LearnX.vercel.app/explore" />
+        <meta property="og:title" content="Latest Programming Blog Posts - LearnX" />
         <meta
           property="og:description"
-          content="Explore the latest programming blog posts on Zedemy, covering HTML, JavaScript, Python, React, and more. Search and read tutorials, tips, and guides."
+          content="Explore the latest programming blog posts on LearnX, covering HTML, JavaScript, Python, React, and more. Search and read tutorials, tips, and guides."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://zedemy.vercel.app/explore" />
-        <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png" />
-        <meta property="og:site_name" content="Zedemy" />
+        <meta property="og:url" content="https://LearnX.vercel.app/explore" />
+        <meta property="og:image" content="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp" />
+        <meta property="og:site_name" content="LearnX" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Latest Programming Blog Posts - Zedemy" />
+        <meta name="twitter:title" content="Latest Programming Blog Posts - LearnX" />
         <meta
           name="twitter:description"
-          content="Explore the latest programming blog posts on Zedemy, covering HTML, JavaScript, Python, React, and more. Search and read tutorials, tips, and guides."
+          content="Explore the latest programming blog posts on LearnX, covering HTML, JavaScript, Python, React, and more. Search and read tutorials, tips, and guides."
         />
-        <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png" />
-        <link rel="icon" type="image/png" href="https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png" />
+        <meta name="twitter:image" content="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp" />
+        <link rel="icon" type="image/png" href="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "CollectionPage",
-            "name": "Zedemy Blog",
-            "description": "Explore the latest programming blog posts on Zedemy, covering HTML, JavaScript, Python, React, and more.",
-            "url": "https://zedemy.vercel.app/explore",
+            "name": "LearnX Blog",
+            "description": "Explore the latest programming blog posts on LearnX, covering HTML, JavaScript, Python, React, and more.",
+            "url": "https://LearnX.vercel.app/explore",
             "publisher": {
               "@type": "Organization",
-              "name": "Zedemy",
+              "name": "LearnX",
               "founder": {
                 "@type": "Person",
                 "name": "Sanjay Patidar"
               },
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png"
+                "url": "https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp"
               }
             },
             "mainEntity": {
@@ -373,14 +373,14 @@ const handlePreload = debounce((slug) => {
                     "@type": "Person",
                     "name": post.author
                   },
-                  "url": `https://zedemy.vercel.app/post/${post.slug}`,
+                  "url": `https://LearnX.vercel.app/post/${post.slug}`,
                   "datePublished": post.createdAt || new Date().toISOString(),
                   "publisher": {
                     "@type": "Organization",
-                    "name": "Zedemy",
+                    "name": "LearnX",
                     "logo": {
                       "@type": "ImageObject",
-                      "url": "https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png"
+                      "url": "https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp"
                     }
                   }
                 }
@@ -402,7 +402,7 @@ const handlePreload = debounce((slug) => {
                       <Link to={`/post/${post.slug}`} aria-label={`View post: ${post.title}`}>
               <PostImage
                 src={post.titleImage || fallbackImage}
-                alt={`Featured image for ${post.title} on Zedemy`}
+                alt={`Featured image for ${post.title} on LearnX`}
                 loading="lazy"
               />
             </Link>
@@ -427,39 +427,39 @@ const handlePreload = debounce((slug) => {
       <FAQSection>
         <FAQTitle>Frequently Asked Questions</FAQTitle>
         <FAQItem>
-          <FAQQuestion>What types of blog posts are available on Zedemy?</FAQQuestion>
+          <FAQQuestion>What types of blog posts are available on LearnX?</FAQQuestion>
           <FAQAnswer>
-            Zedemy offers blog posts on various programming topics, including HTML, JavaScript, Python, React, and more, covering tutorials, tips, and best practices.
+            LearnX offers blog posts on various programming topics, including HTML, JavaScript, Python, React, and more, covering tutorials, tips, and best practices.
           </FAQAnswer>
         </FAQItem>
         <FAQItem>
-          <FAQQuestion>How can I search for specific blog posts on Zedemy?</FAQQuestion>
+          <FAQQuestion>How can I search for specific blog posts on LearnX?</FAQQuestion>
           <FAQAnswer>
             Use the search bar at the top of the blog page to enter keywords related to the topic you're interested in, and relevant posts will be displayed.
           </FAQAnswer>
         </FAQItem>
         <FAQItem>
-          <FAQQuestion>Are the blog posts on Zedemy free to read?</FAQQuestion>
+          <FAQQuestion>Are the blog posts on LearnX free to read?</FAQQuestion>
           <FAQAnswer>
-            Yes, all blog posts on Zedemy are free to read, providing accessible learning resources for everyone.
+            Yes, all blog posts on LearnX are free to read, providing accessible learning resources for everyone.
           </FAQAnswer>
         </FAQItem>
         <FAQItem>
-          <FAQQuestion>How often are new blog posts published on Zedemy?</FAQQuestion>
+          <FAQQuestion>How often are new blog posts published on LearnX?</FAQQuestion>
           <FAQAnswer>
-            Zedemy publishes new blog posts regularly, typically weekly, to keep you updated with the latest programming trends and tutorials.
+            LearnX publishes new blog posts regularly, typically weekly, to keep you updated with the latest programming trends and tutorials.
           </FAQAnswer>
         </FAQItem>
         <FAQItem>
-          <FAQQuestion>Can I contribute a blog post to Zedemy?</FAQQuestion>
+          <FAQQuestion>Can I contribute a blog post to LearnX?</FAQQuestion>
           <FAQAnswer>
-            Absolutely! Zedemy encourages community contributions. If you're a registered user, you can easily submit your blog post through the Add Post page after logging in. Simply share your insights, and our team will review and publish them as appropriate.
+            Absolutely! LearnX encourages community contributions. If you're a registered user, you can easily submit your blog post through the Add Post page after logging in. Simply share your insights, and our team will review and publish them as appropriate.
           </FAQAnswer>
         </FAQItem>
         <FAQItem>
-          <FAQQuestion>What programming languages are covered in Zedemy's blog?</FAQQuestion>
+          <FAQQuestion>What programming languages are covered in LearnX's blog?</FAQQuestion>
           <FAQAnswer>
-            Zedemy's blog covers a wide range of programming languages, including HTML, CSS, JavaScript, Python, Java, C++, and frameworks like React, Angular, and Vue.js.
+            LearnX's blog covers a wide range of programming languages, including HTML, CSS, JavaScript, Python, Java, C++, and frameworks like React, Angular, and Vue.js.
           </FAQAnswer>
         </FAQItem>
       </FAQSection>
