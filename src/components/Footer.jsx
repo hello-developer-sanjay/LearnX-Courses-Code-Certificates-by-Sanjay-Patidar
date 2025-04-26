@@ -116,7 +116,7 @@ const links = [
     { to: "/certificate-verification", text: "Certificate Verification" },
 
     { to: "/dashboard", text: "Dashboard" },
-    { to: "https://zedemy.vercel.app/sitemap.xml", text: "Sitemap" },
+    { to: "https://LearnX.vercel.app/sitemap.xml", text: "Sitemap" },
 
 ];
 
@@ -130,7 +130,7 @@ const Footer = () => {
                 <FooterAbout />
             </div>
             <div className="footer-bottom">
-                <p>&copy; 2024 Zedemy. All Rights Reserved.</p>
+                <p>&copy; 2024 LearnX. All Rights Reserved.</p>
             </div>
         </footer>
     );
@@ -174,7 +174,7 @@ const FooterLogo = () => {
 
     return (
         <animated.div ref={logoRef} className="footer-logo" style={logoSpring}>
-            <h1>Zedemy</h1>
+            <h1>LearnX</h1>
             <p>Where Technology Powers Next-Level Learning</p>
             <AnimatePresence>
       <SocialIconsContainer>
@@ -375,8 +375,8 @@ const FooterAbout = () => {
 
     return (
         <animated.div ref={aboutRef} className="footer-about" style={aboutSpring}>
-            <h2>About Zedemy</h2>
-            <p>Founded by Sanjay Patidar, Zedemy combines technology and education to deliver top-tier learning experiences. Join us to explore, learn, and grow in the world of tech.</p>
+            <h2>About LearnX</h2>
+            <p>Founded by Sanjay Patidar, LearnX combines technology and education to deliver top-tier learning experiences. Join us to explore, learn, and grow in the world of tech.</p>
             
         </animated.div>
     );
