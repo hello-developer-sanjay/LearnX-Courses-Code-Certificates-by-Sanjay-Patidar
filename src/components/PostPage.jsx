@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef, memo, useMemo, useCallback, Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPostBySlug, fetchCompletedPosts, fetchPosts } from '../actions/postActions';
@@ -501,17 +502,17 @@ const PostPage = memo(() => {
       </LoadingOverlay>
     );
   }
-  const pageTitle = `${post.title} | Zedemy, India`;
+  const pageTitle = `${post.title} | LearnX, India`;
   const pageDescription = post.summary
     ? truncateText(post.summary, 160)
     : (post.content
         ? truncateText(post.content, 160)
-        : `Learn ${post.title.toLowerCase()} with Zedemy's expert-led tutorials for Indian students.`);
+        : `Learn ${post.title.toLowerCase()} with LearnX's expert-led tutorials for Indian students.`);
   const pageKeywords = post.keywords
-    ? `${post.keywords}, online tech tutorials India, learn coding India, tech education India, Zedemy, ${post.category}, ${post.title.toLowerCase()}`
-    : `${post.title}, online tech tutorials India, learn coding India, tech education India, Zedemy, ${post.category}`;
-  const canonicalUrl = `https://zedemy.vercel.app/post/${slug}`;
-  const ogImage = post.titleImage || 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png';
+    ? `${post.keywords}, online tech tutorials India, learn coding India, tech education India, LearnX, ${post.category}, ${post.title.toLowerCase()}`
+    : `${post.title}, online tech tutorials India, learn coding India, tech education India, LearnX, ${post.category}`;
+  const canonicalUrl = `https://LearnX.vercel.app/post/${slug}`;
+  const ogImage = post.titleImage || 'https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp';
     const faqData = post.subtitles
   .filter(subtitle => subtitle.isFAQ)
   .map((subtitle, index) => ({
@@ -536,14 +537,14 @@ const PostPage = memo(() => {
       articleSection: post.category || 'Tech Tutorials',
       author: {
         '@type': 'Person',
-        name: post.author || 'Zedemy Team'
+        name: post.author || 'LearnX Team'
       },
       publisher: {
         '@type': 'Organization',
-        name: 'Zedemy',
+        name: 'LearnX',
         logo: {
           '@type': 'ImageObject',
-          url: 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png'
+          url: 'https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp'
         }
       },
       datePublished: post.date,
@@ -559,13 +560,13 @@ const PostPage = memo(() => {
       inLanguage: 'en',
       isPartOf: {
         '@type': 'WebSite',
-        name: 'Zedemy',
-        url: 'https://zedemy.vercel.app'
+        name: 'LearnX',
+        url: 'https://LearnX.vercel.app'
       },
       relatedLink: relatedPosts.map(relatedPost => ({
         '@type': 'CreativeWork',
         name: relatedPost.title,
-        url: `https://zedemy.vercel.app/post/${relatedPost.slug}`
+        url: `https://LearnX.vercel.app/post/${relatedPost.slug}`
       }))
     },
     {
@@ -576,19 +577,19 @@ const PostPage = memo(() => {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://zedemy.vercel.app/'
+          item: 'https://LearnX.vercel.app/'
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Blog',
-          item: 'https://zedemy.vercel.app/explore'
+          item: 'https://LearnX.vercel.app/explore'
         },
         {
           '@type': 'ListItem',
           position: 3,
           name: post.category || 'Tech Tutorials',
-          item: `https://zedemy.vercel.app/category/${post.category?.toLowerCase() || 'blog'}`
+          item: `https://LearnX.vercel.app/category/${post.category?.toLowerCase() || 'blog'}`
         },
         {
           '@type': 'ListItem',
@@ -606,11 +607,11 @@ const PostPage = memo(() => {
     {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      name: 'Zedemy',
-      url: 'https://zedemy.vercel.app',
+      name: 'LearnX',
+      url: 'https://LearnX.vercel.app',
       potentialAction: {
         '@type': 'SearchAction',
-        target: 'https://zedemy.vercel.app/explore?search={search_term_string}',
+        target: 'https://LearnX.vercel.app/explore?search={search_term_string}',
         'query-input': 'required name=search_term_string'
       }
     }
@@ -623,7 +624,7 @@ const PostPage = memo(() => {
           <title>{pageTitle}</title>
           <meta name="description" content={pageDescription} />
           <meta name="keywords" content={pageKeywords} />
-          <meta name="author" content={post.author || 'Zedemy Team'} />
+          <meta name="author" content={post.author || 'LearnX Team'} />
           <meta name="robots" content="index, follow, max-image-preview:large" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <link rel="canonical" href={canonicalUrl} />
@@ -631,15 +632,15 @@ const PostPage = memo(() => {
           <meta property="og:title" content={pageTitle} />
           <meta property="og:description" content={pageDescription} />
           <meta property="og:image" content={ogImage} />
-          <meta property="og:image:alt" content={`${post.title} tutorial on Zedemy`} />
+          <meta property="og:image:alt" content={`${post.title} tutorial on LearnX`} />
           <meta property="og:url" content={canonicalUrl} />
           <meta property="og:type" content="article" />
-          <meta property="og:site_name" content="Zedemy" />
+          <meta property="og:site_name" content="LearnX" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={pageTitle} />
           <meta name="twitter:description" content={pageDescription} />
           <meta name="twitter:image" content={ogImage} />
-          <meta name="twitter:image:alt" content={`${post.title} tutorial on Zedemy`} />
+          <meta name="twitter:image:alt" content={`${post.title} tutorial on LearnX`} />
           <meta name="twitter:site" content="@sanjaypatidar" />
           <meta name="twitter:creator" content="@sanjaypatidar" />
           <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
