@@ -141,7 +141,7 @@ const CodeEditor = () => {
         <meta property="og:title" content="LearnX Code Editor - Customize and Download Your Code" />
         <meta property="og:description" content="Experience a powerful code editor with syntax highlighting, multiple themes, and download options. Perfect for developers and coding enthusiasts." />
         <meta property="og:image" content="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp" />
-        <meta property="og:url" content="https://learnandshare.vercel.app/editor" />
+        <meta property="og:url" content="https://learnx24.vercel.app/editor" />
         <meta property="og:type" content="website" />
       
         <meta name="twitter:card" content="summary_large_image" />
