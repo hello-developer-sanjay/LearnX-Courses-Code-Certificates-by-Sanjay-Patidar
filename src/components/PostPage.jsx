@@ -511,7 +511,7 @@ const PostPage = memo(() => {
   const pageKeywords = post.keywords
     ? `${post.keywords}, online tech tutorials India, learn coding India, tech education India, LearnX, ${post.category}, ${post.title.toLowerCase()}`
     : `${post.title}, online tech tutorials India, learn coding India, tech education India, LearnX, ${post.category}`;
-  const canonicalUrl = `https://LearnX.vercel.app/post/${slug}`;
+  const canonicalUrl = `https://learnx24.vercel.app/post/${slug}`;
   const ogImage = post.titleImage || 'https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp';
     const faqData = post.subtitles
   .filter(subtitle => subtitle.isFAQ)
@@ -561,12 +561,12 @@ const PostPage = memo(() => {
       isPartOf: {
         '@type': 'WebSite',
         name: 'LearnX',
-        url: 'https://LearnX.vercel.app'
+        url: 'https://learnx24.vercel.app'
       },
       relatedLink: relatedPosts.map(relatedPost => ({
         '@type': 'CreativeWork',
         name: relatedPost.title,
-        url: `https://LearnX.vercel.app/post/${relatedPost.slug}`
+        url: `https://learnx24.vercel.app/post/${relatedPost.slug}`
       }))
     },
     {
@@ -577,19 +577,19 @@ const PostPage = memo(() => {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://LearnX.vercel.app/'
+          item: 'https://learnx24.vercel.app/'
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Blog',
-          item: 'https://LearnX.vercel.app/explore'
+          item: 'https://learnx24.vercel.app/explore'
         },
         {
           '@type': 'ListItem',
           position: 3,
           name: post.category || 'Tech Tutorials',
-          item: `https://LearnX.vercel.app/category/${post.category?.toLowerCase() || 'blog'}`
+          item: `https://learnx24.vercel.app/category/${post.category?.toLowerCase() || 'blog'}`
         },
         {
           '@type': 'ListItem',
@@ -608,10 +608,10 @@ const PostPage = memo(() => {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
       name: 'LearnX',
-      url: 'https://LearnX.vercel.app',
+      url: 'https://learnx24.vercel.app',
       potentialAction: {
         '@type': 'SearchAction',
-        target: 'https://LearnX.vercel.app/explore?search={search_term_string}',
+        target: 'https://learnx24.vercel.app/explore?search={search_term_string}',
         'query-input': 'required name=search_term_string'
       }
     }
