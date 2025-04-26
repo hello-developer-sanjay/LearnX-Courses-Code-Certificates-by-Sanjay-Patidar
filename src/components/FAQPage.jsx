@@ -93,13 +93,13 @@ const FAQPage = () => {
     {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
-      name: 'Zedemy | Frequently Asked Questions',
+      name: 'LearnX | Frequently Asked Questions',
       description:
-        'Find answers to common questions about Zedemy’s online tech courses, certificate verification, in-browser coding platform, and more.',
-      url: 'https://zedemy.vercel.app/faq',
+        'Find answers to common questions about LearnX’s online tech courses, certificate verification, in-browser coding platform, and more.',
+      url: 'https://LearnX.vercel.app/faq',
       mainEntityOfPage: {
         '@type': 'WebPage',
-        '@id': 'https://zedemy.vercel.app/faq',
+        '@id': 'https://LearnX.vercel.app/faq',
       },
       author: {
         '@type': 'Person',
@@ -108,15 +108,15 @@ const FAQPage = () => {
       },
       publisher: {
         '@type': 'Organization',
-        name: 'Zedemy',
+        name: 'LearnX',
         logo: {
           '@type': 'ImageObject',
-          url: 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png',
+          url: 'https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp',
         },
       },
       image: {
         '@type': 'ImageObject',
-        url: 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png',
+        url: 'https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp',
       },
       inLanguage: 'en',
     },
@@ -128,13 +128,13 @@ const FAQPage = () => {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://zedemy.vercel.app/',
+          item: 'https://LearnX.vercel.app/',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'FAQs',
-          item: 'https://zedemy.vercel.app/faq',
+          item: 'https://LearnX.vercel.app/faq',
         },
       ],
     },
@@ -149,59 +149,58 @@ const FAQPage = () => {
     <>
       <Helmet>
         <html lang="en" />
-        <title>Zedemy | Frequently Asked Questions</title>
+        <title>LearnX | Frequently Asked Questions</title>
         <meta
           name="description"
-          content="Find answers to common questions about Zedemy’s online tech courses, certificate verification, in-browser coding platform, and more."
+          content="Find answers to common questions about LearnX’s online tech courses, certificate verification, in-browser coding platform, and more."
         />
         <meta
           name="keywords"
-          content="Zedemy FAQs, online tech courses, certificate verification, in-browser coding, learn coding, web development, AI, Python, tech education, Sanjay Patidar"
+          content="LearnX FAQs, online tech courses, certificate verification, in-browser coding, learn coding, web development, AI, Python, tech education, Sanjay Patidar"
         />
         <meta name="author" content="Sanjay Patidar" />
         <meta name="robots" content="index, follow, max-image-preview:large" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/svg+xml" href="/zedemy-logo.png" />
-        <link rel="canonical" href="https://zedemy.vercel.app/faq" />
-        <link rel="preload" as="image" href="https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png" />
+        <link rel="icon" type="image/svg+xml" href="/LearnX-logo.png" />
+        <link rel="canonical" href="https://LearnX.vercel.app/faq" />
+        <link rel="preload" as="image" href="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Amatic+SC&family=Bangers&display=swap"
           rel="stylesheet"
           media="print"
           onload="this.media='all'"
         />
-        <meta property="og:title" content="Zedemy | Frequently Asked Questions" />
+        <meta property="og:title" content="LearnX | Frequently Asked Questions" />
         <meta
           property="og:description"
-          content="Find answers to common questions about Zedemy’s online tech courses, certificate verification, in-browser coding platform, and more."
+          content="Find answers to common questions about LearnX’s online tech courses, certificate verification, in-browser coding platform, and more."
         />
         <meta
           property="og:image"
-          content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png"
+          content="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp"
         />
-        <meta property="og:image:alt" content="Zedemy Tech Education Platform Logo" />
+        <meta property="og:image:alt" content="LearnX Tech Education Platform Logo" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:url" content="https://zedemy.vercel.app/faq" />
+        <meta property="og:url" content="https://LearnX.vercel.app/faq" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Zedemy" />
+        <meta property="og:site_name" content="LearnX" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Zedemy | Frequently Asked Questions" />
+        <meta name="twitter:title" content="LearnX | Frequently Asked Questions" />
         <meta
           name="twitter:description"
-          content="Find answers to common questions about Zedemy’s online tech courses, certificate verification, in-browser coding platform, and more."
+          content="Find answers to common questions about LearnX’s online tech courses, certificate verification, in-browser coding platform, and more."
         />
         <meta
           name="twitter:image"
-          content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png"
+          content="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp"
         />
-        <meta name="twitter:image:alt" content="Zedemy Tech Education Platform Logo" />
+        <meta name="twitter:image:alt" content="LearnX Tech Education Platform Logo" />
         <meta name="twitter:site" content="@sanjaypatidar" />
         <meta name="twitter:creator" content="@sanjaypatidar" />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
 
-      <Container role="main" aria-label="Zedemy FAQ Page">
+      <Container role="main" aria-label="LearnX FAQ Page">
         <Header>
           <BreadcrumbNav aria-label="Breadcrumb navigation">
             <Link to="/">Home</Link> &gt; <span>FAQs</span>
@@ -221,8 +220,8 @@ const FAQPage = () => {
         <Footer>
           <p>
             Learn more about{' '}
-            <FooterLink to="/about" aria-label="Learn more about Zedemy">
-              Zedemy
+            <FooterLink to="/about" aria-label="Learn more about LearnX">
+              LearnX
             </FooterLink>{' '}
             or explore our{' '}
             <FooterLink to="/explore" aria-label="Explore tech courses">
