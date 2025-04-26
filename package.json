@@ -41,6 +41,7 @@
     "jspdf": "^2.5.1",
     "npm": "^11.2.0",
     "pica": "^9.0.1",
+    "lodash": "^4.17.21",
     "prettier": "^3.3.2",
     "react": "^18.2.0",
     "react-copy-to-clipboard": "^5.1.0",
