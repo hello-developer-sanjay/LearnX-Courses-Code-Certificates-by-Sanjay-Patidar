@@ -96,10 +96,10 @@ const FAQPage = () => {
       name: 'LearnX | Frequently Asked Questions',
       description:
         'Find answers to common questions about LearnX’s online tech courses, certificate verification, in-browser coding platform, and more.',
-      url: 'https://LearnX.vercel.app/faq',
+      url: 'https://learnx24.vercel.app/faq',
       mainEntityOfPage: {
         '@type': 'WebPage',
-        '@id': 'https://LearnX.vercel.app/faq',
+        '@id': 'https://learnx24.vercel.app/faq',
       },
       author: {
         '@type': 'Person',
@@ -128,13 +128,13 @@ const FAQPage = () => {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://LearnX.vercel.app/',
+          item: 'https://learnx24.vercel.app/',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'FAQs',
-          item: 'https://LearnX.vercel.app/faq',
+          item: 'https://learnx24.vercel.app/faq',
         },
       ],
     },
@@ -162,7 +162,7 @@ const FAQPage = () => {
         <meta name="robots" content="index, follow, max-image-preview:large" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" type="image/svg+xml" href="/LearnX-logo.png" />
-        <link rel="canonical" href="https://LearnX.vercel.app/faq" />
+        <link rel="canonical" href="https://learnx24.vercel.app/faq" />
         <link rel="preload" as="image" href="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp" />
         <link
           rel="stylesheet"
@@ -181,7 +181,7 @@ const FAQPage = () => {
         <meta property="og:image:alt" content="LearnX Tech Education Platform Logo" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:url" content="https://LearnX.vercel.app/faq" />
+        <meta property="og:url" content="https://learnx24.vercel.app/faq" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="LearnX" />
         <meta name="twitter:card" content="summary_large_image" />
