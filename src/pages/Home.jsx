@@ -440,7 +440,7 @@ const Home = memo(() => {
 
   const handleCertificatePreview = () => {
     window.open(
-      'https://zedemy-media-2025.s3.ap-south-1.amazonaws.com/certificates/Zedemy_by_HogwartsEdx_VS%20Code_2025-04-20_5c0f2f41-57cb-46ce-89ef-0a89298b002a.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA5BQ4NJCXBUCDIMHH%2F20250423%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250423T095231Z&X-Amz-Expires=60&X-Amz-Signature=870f6be370cb38e4bc51daef097ad46803530cc7f90851f1f128aff0279fdef3&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject',
+      'https://LearnX-media-2025.s3.ap-south-1.amazonaws.com/certificates/LearnX_by_HogwartsEdx_VS%20Code_2025-04-20_5c0f2f41-57cb-46ce-89ef-0a89298b002a.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA5BQ4NJCXBUCDIMHH%2F20250423%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250423T095231Z&X-Amz-Expires=60&X-Amz-Signature=870f6be370cb38e4bc51daef097ad46803530cc7f90851f1f128aff0279fdef3&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject',
       '_blank'
     );
   };
@@ -449,106 +449,106 @@ const Home = memo(() => {
   const faqData = [
     {
       '@type': 'Question',
-      name: 'What is Zedemy?',
+      name: 'What is LearnX?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Zedemy is a serverless learning platform for tech education, offering course uploads, certificate verification, and in-browser coding for learners worldwide.',
+        text: 'LearnX is a serverless learning platform for tech education, offering course uploads, certificate verification, and in-browser coding for learners worldwide.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Who founded Zedemy?',
+      name: 'Who founded LearnX?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Zedemy was founded by Sanjay Patidar, a Software Development Engineer specializing in full-stack development and AI-driven solutions.',
+        text: 'LearnX was founded by Sanjay Patidar, a Software Development Engineer specializing in full-stack development and AI-driven solutions.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What can I learn on Zedemy?',
+      name: 'What can I learn on LearnX?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'On Zedemy, you can learn web development, AI, cloud computing, JavaScript, Python, and more through expert-led courses and hands-on coding.',
+        text: 'On LearnX, you can learn web development, AI, cloud computing, JavaScript, Python, and more through expert-led courses and hands-on coding.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How does Zedemy verify certificates?',
+      name: 'How does LearnX verify certificates?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Zedemy uses a secure, blockchain-inspired system to verify course completion certificates, ensuring authenticity for learners and employers.',
+        text: 'LearnX uses a secure, blockchain-inspired system to verify course completion certificates, ensuring authenticity for learners and employers.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What is Zedemy’s in-browser code editor?',
+      name: 'What is LearnX’s in-browser code editor?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Zedemy’s in-browser code editor allows users to write, test, and share code in languages like JavaScript, Python, and HTML without any setup.',
+        text: 'LearnX’s in-browser code editor allows users to write, test, and share code in languages like JavaScript, Python, and HTML without any setup.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Can I create and upload courses on Zedemy?',
+      name: 'Can I create and upload courses on LearnX?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes, educators and creators can upload courses on Zedemy, sharing expertise in tech fields like programming, AI, and cloud computing.',
+        text: 'Yes, educators and creators can upload courses on LearnX, sharing expertise in tech fields like programming, AI, and cloud computing.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Is Zedemy suitable for beginners in tech?',
+      name: 'Is LearnX suitable for beginners in tech?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Absolutely, Zedemy offers beginner-friendly courses with step-by-step guidance, making it ideal for those new to tech and coding.',
+        text: 'Absolutely, LearnX offers beginner-friendly courses with step-by-step guidance, making it ideal for those new to tech and coding.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How does Zedemy personalize learning?',
+      name: 'How does LearnX personalize learning?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Zedemy provides customizable themes, adaptive content, and personalized settings to tailor the learning experience to individual needs.',
+        text: 'LearnX provides customizable themes, adaptive content, and personalized settings to tailor the learning experience to individual needs.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What technologies power Zedemy?',
+      name: 'What technologies power LearnX?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Zedemy is built with React.js, Node.js, AWS Lambda, and MongoDB, delivering a scalable and seamless user experience.',
+        text: 'LearnX is built with React.js, Node.js, AWS Lambda, and MongoDB, delivering a scalable and seamless user experience.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How can I join Zedemy’s tech community?',
+      name: 'How can I join LearnX’s tech community?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Visit zedemy.vercel.app to sign up, learn, create courses, and connect with a global community of tech enthusiasts and educators.',
+        text: 'Visit LearnX.vercel.app to sign up, learn, create courses, and connect with a global community of tech enthusiasts and educators.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Why choose Zedemy for online tech education?',
+      name: 'Why choose LearnX for online tech education?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Zedemy offers a unique combination of course creation, in-browser coding, and certificate verification, making it a top choice for tech learners.',
+        text: 'LearnX offers a unique combination of course creation, in-browser coding, and certificate verification, making it a top choice for tech learners.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Does Zedemy offer free courses?',
+      name: 'Does LearnX offer free courses?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes, Zedemy provides a range of free courses alongside premium options, catering to learners at all levels.',
+        text: 'Yes, LearnX provides a range of free courses alongside premium options, catering to learners at all levels.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How can I verify a Zedemy certificate?',
+      name: 'How can I verify a LearnX certificate?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Use Zedemy’s certificate verification page at /certificate-verification to authenticate certificates securely and instantly.',
+        text: 'Use LearnX’s certificate verification page at /certificate-verification to authenticate certificates securely and instantly.',
       },
     },
   ];
@@ -556,16 +556,16 @@ const Home = memo(() => {
   // FAQs to display on homepage (subset of faqData)
   const displayedFAQs = [
     {
-      name: 'What is Zedemy?',
-      text: 'Zedemy is a serverless learning platform for tech education, offering course uploads, certificate verification, and in-browser coding for learners worldwide.',
+      name: 'What is LearnX?',
+      text: 'LearnX is a serverless learning platform for tech education, offering course uploads, certificate verification, and in-browser coding for learners worldwide.',
     },
     {
-      name: 'Does Zedemy offer free courses?',
-      text: 'Yes, Zedemy provides a range of free courses alongside premium options, catering to learners at all levels.',
+      name: 'Does LearnX offer free courses?',
+      text: 'Yes, LearnX provides a range of free courses alongside premium options, catering to learners at all levels.',
     },
     {
-      name: 'How can I verify a Zedemy certificate?',
-      text: 'Use Zedemy’s <a href="/certificate-verification" aria-label="Verify certificates">certificate verification page</a> to authenticate certificates securely and instantly.',
+      name: 'How can I verify a LearnX certificate?',
+      text: 'Use LearnX’s <a href="/certificate-verification" aria-label="Verify certificates">certificate verification page</a> to authenticate certificates securely and instantly.',
     },
   ];
 
@@ -573,13 +573,13 @@ const Home = memo(() => {
     {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
-      name: 'Zedemy | Online Tech Education Platform by Sanjay Patidar',
+      name: 'LearnX | Online Tech Education Platform by Sanjay Patidar',
       description:
-        'Zedemy, founded by Sanjay Patidar, is a serverless platform offering tech courses, certificate verification, and in-browser coding. Learn coding and tech skills today.',
-      url: 'https://zedemy.vercel.app/',
+        'LearnX, founded by Sanjay Patidar, is a serverless platform offering tech courses, certificate verification, and in-browser coding. Learn coding and tech skills today.',
+      url: 'https://LearnX.vercel.app/',
       mainEntityOfPage: {
         '@type': 'WebPage',
-        '@id': 'https://zedemy.vercel.app/',
+        '@id': 'https://LearnX.vercel.app/',
       },
       author: {
         '@type': 'Person',
@@ -588,26 +588,26 @@ const Home = memo(() => {
       },
       publisher: {
         '@type': 'Organization',
-        name: 'Zedemy',
+        name: 'LearnX',
         logo: {
           '@type': 'ImageObject',
-          url: 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png',
+          url: 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/LearnX-logo.png',
         },
       },
       image: {
         '@type': 'ImageObject',
-        url: 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png',
+        url: 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/LearnX-logo.png',
       },
       inLanguage: 'en',
     },
     {
       '@context': 'https://schema.org',
       '@type': 'Organization',
-      name: 'Zedemy',
-      url: 'https://zedemy.vercel.app/',
+      name: 'LearnX',
+      url: 'https://LearnX.vercel.app/',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png',
+        url: 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/LearnX-logo.png',
       },
       founder: {
         '@type': 'Person',
@@ -618,7 +618,7 @@ const Home = memo(() => {
         'https://www.linkedin.com/in/sanjay-patidar/',
         'https://twitter.com/sanjaypatidar',
         'https://www.instagram.com/sanjaypatidar_/',
-        'https://www.facebook.com/zedemy',
+        'https://www.facebook.com/LearnX',
       ],
     },
     {
@@ -629,19 +629,19 @@ const Home = memo(() => {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://zedemy.vercel.app/',
+          item: 'https://LearnX.vercel.app/',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Explore',
-          item: 'https://zedemy.vercel.app/explore',
+          item: 'https://LearnX.vercel.app/explore',
         },
         {
           '@type': 'ListItem',
           position: 3,
           name: 'About',
-          item: 'https://zedemy.vercel.app/faq',
+          item: 'https://LearnX.vercel.app/faq',
         },
       ],
     },
@@ -653,11 +653,11 @@ const Home = memo(() => {
     {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      name: 'Zedemy',
-      url: 'https://zedemy.vercel.app/',
+      name: 'LearnX',
+      url: 'https://LearnX.vercel.app/',
       potentialAction: {
         '@type': 'SearchAction',
-        target: 'https://zedemy.vercel.app/explore?search={search_term_string}',
+        target: 'https://LearnX.vercel.app/explore?search={search_term_string}',
         'query-input': 'required name=search_term_string',
       },
     },
@@ -666,21 +666,21 @@ const Home = memo(() => {
     <>
       <Helmet>
         <html lang="en" />
-        <title>Zedemy | Learn & Build Tech Skills | Sanjay Patidar</title>
+        <title>LearnX: Courses, Code & Certificates by Sanjay Patidar</title>
         <meta
           name="description"
-          content="Zedemy, founded by Sanjay Patidar, offers online tech courses, certificate verification, and in-browser coding. Learn web development, AI, and more."
+          content="LearnX by Sanjay Patidar: Category-based courses, certificates and code formatting. Master skills with Indian-rooted online learning platform for career growth!"
         />
         <meta
           name="keywords"
-          content="Zedemy, Sanjay Patidar, online tech courses, learn coding, certificate verification, in-browser code editor, serverless LMS, React.js, AWS Lambda, web development, AI, Python, tech education"
+          content="LearnX, Sanjay Patidar, online tech courses, learn coding, certificate verification, in-browser code editor, serverless LMS, React.js, AWS Lambda, web development, AI, Python, tech education"
         />
         <meta name="author" content="Sanjay Patidar" />
         <meta name="robots" content="index, follow, max-image-preview:large" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/svg+xml" href="https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png" />
-        <link rel="canonical" href="https://zedemy.vercel.app/" />
-        <link rel="preload" as="image" href="https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png" />
+        <link rel="icon" type="image/svg+xml" href="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp" />
+        <link rel="canonical" href="https://LearnX.vercel.app/" />
+        <link rel="preload" as="image" href="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp" />
         <link
           rel="preload"
           as="image"
@@ -691,42 +691,42 @@ const Home = memo(() => {
           media="print"
           onload="this.media='all'"
         />
-        <meta property="og:title" content="Zedemy | Learn & Build Tech Skills | Sanjay Patidar" />
+        <meta property="og:title" content="LearnX: Courses, Code & Certificates by Sanjay Patidar" />
         <meta
           property="og:description"
-          content="Zedemy, founded by Sanjay Patidar, offers online tech courses, certificate verification, and in-browser coding. Learn web development, AI, and more."
+          content="LearnX by Sanjay Patidar: Category-based courses, certificates and code formatting. Master skills with Indian-rooted online learning platform for career growth!"
         />
         <meta
           property="og:image"
-          content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png"
+          content="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp"
         />
-        <meta property="og:image:alt" content="Zedemy Tech Education Platform Logo" />
+        <meta property="og:image:alt" content="LearnX Tech Education Platform Logo" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:url" content="https://zedemy.vercel.app/" />
+        <meta property="og:url" content="https://LearnX.vercel.app/" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Zedemy" />
+        <meta property="og:site_name" content="LearnX" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Zedemy | Learn & Build Tech Skills | Sanjay Patidar" />
+        <meta name="twitter:title" content="LearnX: Courses, Code & Certificates by Sanjay Patidar" />
         <meta
           name="twitter:description"
-          content="Zedemy, founded by Sanjay Patidar, offers online tech courses, certificate verification, and in-browser coding. Learn web development, AI, and more."
+          content="LearnX by Sanjay Patidar: Category-based courses, certificates and code formatting. Master skills with Indian-rooted online learning platform for career growth!"
         />
         <meta
           name="twitter:image"
-          content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png"
+          content="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp"
         />
-        <meta name="twitter:image:alt" content="Zedemy Tech Education Platform Logo" />
+        <meta name="twitter:image:alt" content="LearnX Tech Education Platform Logo" />
         <meta name="twitter:site" content="@sanjaypatidar" />
         <meta name="twitter:creator" content="@sanjaypatidar" />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
-      <HomeContainer role="main" aria-label="Zedemy Homepage">
+      <HomeContainer role="main" aria-label="LearnX Homepage">
         <header>
           <BreadcrumbNav aria-label="Breadcrumb navigation">
             <Link to="/">Home</Link> 
             <Link to="/explore">Explore New Blogs</Link> 
-            <Link to="/faq">About Zedemy</Link>
+            <Link to="/faq">About LearnX</Link>
           </BreadcrumbNav>
         </header>
         <ContentWrapper style={{ opacity: isVisible ? 1 : 0 }}>
@@ -751,14 +751,14 @@ const Home = memo(() => {
               <p>Earn your HogWartsEdx certificate in courses like Wizarding VS Code Mastery!</p>
             </CertificatePreview>
             <Suspense fallback={<div>Loading share buttons...</div>}>
-              <ShareButton url="https://zedemy.vercel.app/" title="Zedemy | Online Tech Education Platform" />
+              <ShareButton url="https://LearnX.vercel.app/" title="LearnX | Online Tech Education Platform" />
             </Suspense>
           </TextContainer>
           <GifContainer>
             <LazyLoad height={400} offset={100}>
               <img
                 src="https://zedemy-media-2025.s3.ap-south-1.amazonaws.com/zedemy_header_image.webp"
-                alt="Interactive tech learning experience on Zedemy"
+                alt="Interactive tech learning experience on LearnX"
                 width="600"
                 height="400"
                 loading="lazy"
@@ -797,8 +797,8 @@ const Home = memo(() => {
               Sanjay Patidar
             </a>
             . Join the{' '}
-            <Link to="/faq" aria-label="Learn more about Zedemy">
-              Zedemy community
+            <Link to="/faq" aria-label="Learn more about LearnX">
+              LearnX community
             </Link>{' '}
             for tech education.
           </p>
