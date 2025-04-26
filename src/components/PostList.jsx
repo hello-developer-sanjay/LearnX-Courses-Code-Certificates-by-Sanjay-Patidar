@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import styled, { keyframes } from 'styled-components';
 const SearchBlog = lazy(() => import('./SearchBlog'));
+import { fetchPostBySlug } from '../actions/postActions';
 
+import { debounce } from 'lodash'; // Install lodash for debouncing
 // Styled Components
 const Container = styled.div`
   max-width: 1200px;
@@ -239,17 +241,16 @@ const PostList = () => {
     setPage(prevPage => prevPage + 1);
     setLoadingMore(true);
   };
-
   useEffect(() => {
     setLoadingMore(false);
   }, [posts]);
-
+const handlePreload = debounce((slug) => {
+    dispatch(fetchPostBySlug(slug)); // Fetch and cache in Redux
+  }, 200);
   // Use searchResults if available, otherwise use posts
   const displayedPosts = searchResults.length > 0 ? searchResults : posts;
-
   // Fallback image URL
   const fallbackImage = 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png';
-
   // FAQ Structured Data
   const faqData = {
     "@context": "https://schema.org",
@@ -397,8 +398,8 @@ const PostList = () => {
       <Title>{searchResults.length > 0 ? 'Search Results' : 'Latest Posts'}</Title>
       <PostListContainer>
         {displayedPosts.slice(0, page * 5).map(post => (
-          <PostContainer key={post.postId}>
-            <Link to={`/post/${post.slug}`} aria-label={`View post: ${post.title}`}>
+          <PostContainer key={post.postId} onMouseEnter={() => handlePreload(post.slug)}>
+                      <Link to={`/post/${post.slug}`} aria-label={`View post: ${post.title}`}>
               <PostImage
                 src={post.titleImage || fallbackImage}
                 alt={`Featured image for ${post.title} on Zedemy`}
