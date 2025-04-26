@@ -576,10 +576,10 @@ const Home = memo(() => {
       name: 'LearnX | Online Tech Education Platform by Sanjay Patidar',
       description:
         'LearnX, founded by Sanjay Patidar, is a serverless platform offering tech courses, certificate verification, and in-browser coding. Learn coding and tech skills today.',
-      url: 'https://LearnX.vercel.app/',
+      url: 'https://learnx24.vercel.app/',
       mainEntityOfPage: {
         '@type': 'WebPage',
-        '@id': 'https://LearnX.vercel.app/',
+        '@id': 'https://learnx24.vercel.app/',
       },
       author: {
         '@type': 'Person',
@@ -591,12 +591,12 @@ const Home = memo(() => {
         name: 'LearnX',
         logo: {
           '@type': 'ImageObject',
-          url: 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/LearnX-logo.png',
+          url: 'https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp',
         },
       },
       image: {
         '@type': 'ImageObject',
-        url: 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/LearnX-logo.png',
+        url: 'https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp',
       },
       inLanguage: 'en',
     },
@@ -604,10 +604,10 @@ const Home = memo(() => {
       '@context': 'https://schema.org',
       '@type': 'Organization',
       name: 'LearnX',
-      url: 'https://LearnX.vercel.app/',
+      url: 'https://learnx24.vercel.app/',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://sanjaybasket.s3.ap-south-1.amazonaws.com/LearnX-logo.png',
+        url: 'https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp',
       },
       founder: {
         '@type': 'Person',
@@ -629,19 +629,19 @@ const Home = memo(() => {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://LearnX.vercel.app/',
+          item: 'https://learnx24.vercel.app/',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Explore',
-          item: 'https://LearnX.vercel.app/explore',
+          item: 'https://learnx24.vercel.app/explore',
         },
         {
           '@type': 'ListItem',
           position: 3,
           name: 'About',
-          item: 'https://LearnX.vercel.app/faq',
+          item: 'https://learnx24.vercel.app/faq',
         },
       ],
     },
@@ -654,10 +654,10 @@ const Home = memo(() => {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
       name: 'LearnX',
-      url: 'https://LearnX.vercel.app/',
+      url: 'https://learnx24.vercel.app/',
       potentialAction: {
         '@type': 'SearchAction',
-        target: 'https://LearnX.vercel.app/explore?search={search_term_string}',
+        target: 'https://learnx24.vercel.app/explore?search={search_term_string}',
         'query-input': 'required name=search_term_string',
       },
     },
@@ -679,7 +679,7 @@ const Home = memo(() => {
         <meta name="robots" content="index, follow, max-image-preview:large" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" type="image/svg+xml" href="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp" />
-        <link rel="canonical" href="https://LearnX.vercel.app/" />
+        <link rel="canonical" href="https://learnx24.vercel.app" />
         <link rel="preload" as="image" href="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp" />
         <link
           rel="preload"
@@ -703,7 +703,7 @@ const Home = memo(() => {
         <meta property="og:image:alt" content="LearnX Tech Education Platform Logo" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:url" content="https://LearnX.vercel.app/" />
+        <meta property="og:url" content="https://learnx24.vercel.app/" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="LearnX" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -733,7 +733,8 @@ const Home = memo(() => {
           <TextContainer>
             <StyledText>
               <H3>
-                Welcome to <span className="eduxcel-text">Hog<span className="x-letter">W</span>arts<span className="x-letter">E</span>dx</span>{' '}
+              <span className="eduxcel-text">Learn<span className="x-letter">X</span></span> {}{'by'} {}
+                 <span className="eduxcel-text">Hog<span className="x-letter">W</span>arts<span className="x-letter">E</span>dx</span>{' '}
               </H3>
             </StyledText>
             <Subtitle>Experience the future of tech education with intelligent features</Subtitle>
@@ -751,7 +752,7 @@ const Home = memo(() => {
               <p>Earn your HogWartsEdx certificate in courses like Wizarding VS Code Mastery!</p>
             </CertificatePreview>
             <Suspense fallback={<div>Loading share buttons...</div>}>
-              <ShareButton url="https://LearnX.vercel.app/" title="LearnX | Online Tech Education Platform" />
+              <ShareButton url="https://learnx24.vercel.app" title="LearnX | Online Tech Education Platform" />
             </Suspense>
           </TextContainer>
           <GifContainer>
