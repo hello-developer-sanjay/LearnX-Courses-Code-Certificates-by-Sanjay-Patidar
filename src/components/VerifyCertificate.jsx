@@ -203,46 +203,46 @@ const VerifyCertificate = () => {
     return (
         <Container>
             <Helmet>
-                <title>Verify & Download Certificates - Zedemy</title>
+                <title>Verify & Download Certificates - LearnX</title>
                 <meta
                     name="description"
-                    content="Verify and download certificates on Zedemy, founded by Sanjay Patidar. Search by name, ID, or date with our fast, secure platform."
+                    content="Verify and download certificates on LearnX, founded by Sanjay Patidar. Search by name, ID, or date with our fast, secure platform."
                 />
                 <meta
                     name="keywords"
-                    content="certificate verification, Zedemy, Sanjay Patidar, online courses, certificate download, verify certificate, education"
+                    content="certificate verification, LearnX, Sanjay Patidar, online courses, certificate download, verify certificate, education"
                 />
                 <meta name="author" content="Sanjay Patidar" />
                 <meta name="robots" content="index, follow" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <link rel="canonical" href="https://zedemy.vercel.app/certificate-verification" />
-                <meta property="og:title" content="Verify & Download Certificates - Zedemy" />
+                <link rel="canonical" href="https://LearnX.vercel.app/certificate-verification" />
+                <meta property="og:title" content="Verify & Download Certificates - LearnX" />
                 <meta
                     property="og:description"
-                    content="Verify and download certificates on Zedemy, founded by Sanjay Patidar. Search by name, ID, or date with our fast, secure platform."
+                    content="Verify and download certificates on LearnX, founded by Sanjay Patidar. Search by name, ID, or date with our fast, secure platform."
                 />
                 <meta property="og:type" content="website" />
-                <meta property="og:url" content="https://zedemy.vercel.app/certificate-verification" />
-                <meta property="og:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png" />
-                <meta property="og:site_name" content="Zedemy" />
+                <meta property="og:url" content="https://LearnX.vercel.app/certificate-verification" />
+                <meta property="og:image" content="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp" />
+                <meta property="og:site_name" content="LearnX" />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Verify & Download Certificates - Zedemy" />
+                <meta name="twitter:title" content="Verify & Download Certificates - LearnX" />
                 <meta
                     name="twitter:description"
-                    content="Verify and download certificates on Zedemy, founded by Sanjay Patidar. Search by name, ID, or date with our fast, secure platform."
+                    content="Verify and download certificates on LearnX, founded by Sanjay Patidar. Search by name, ID, or date with our fast, secure platform."
                 />
-                <meta name="twitter:image" content="https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png" />
-                <link rel="icon" type="image/png" href="https://sanjaybasket.s3.ap-south-1.amazonaws.com/zedemy-logo.png" />
+                <meta name="twitter:image" content="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp" />
+                <link rel="icon" type="image/png" href="https://d2rq30ca0zyvzp.cloudfront.net/images/css_2025-04-26_d65add64-ba4f-44a1-a1cc-7b7f29fe1b2a.webp" />
                 <script type="application/ld+json">
                     {JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "WebPage",
                         "name": "Certificate Verification",
-                        "description": "Verify and download certificates on Zedemy, founded by Sanjay Patidar. Search by name, ID, or date with our fast, secure platform.",
-                        "url": "https://zedemy.vercel.app/certificate-verification",
+                        "description": "Verify and download certificates on LearnX, founded by Sanjay Patidar. Search by name, ID, or date with our fast, secure platform.",
+                        "url": "https://LearnX.vercel.app/certificate-verification",
                         "publisher": {
                             "@type": "Organization",
-                            "name": "Zedemy",
+                            "name": "LearnX",
                             "founder": {
                                 "@type": "Person",
                                 "name": "Sanjay Patidar"
