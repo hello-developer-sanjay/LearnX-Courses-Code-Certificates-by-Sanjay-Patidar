@@ -8,8 +8,9 @@ import { markdown } from '@codemirror/lang-markdown';
 import { toPng } from 'html-to-image';
 import download from 'downloadjs';
 import { history, undo, redo } from '@codemirror/commands';
-import { keymap } from '@codemirror/view';
-import { autocompletion } from '@codemirror/autocomplete';
+import { keymap, lineNumbers, highlightActiveLineGutter, highlightSpecialChars, drawSelection, dropCursor, rectangularSelection, crosshairCursor, highlightActiveLine, EditorView } from '@codemirror/view';
+import { autocompletion, closeBrackets, closeBracketsKeymap, completionKeymap } from '@codemirror/autocomplete';
+import { indentOnInput, bracketMatching, foldGutter, foldKeymap } from '@codemirror/language';
 import { oneDark } from '@codemirror/theme-one-dark';
 import { dracula } from '@uiw/codemirror-theme-dracula';
 import { motion } from 'framer-motion';
@@ -76,6 +77,43 @@ const CodeEditor = () => {
 
   const getTheme = (theme) => {
     return themes[theme].theme;
+  };
+
+  const getExtensions = () => {
+    const baseExtensions = [
+      lineNumbers({ enabled: showLineNumbers }),
+      highlightActiveLineGutter(),
+      highlightSpecialChars(),
+      history(),
+      foldGutter(),
+      drawSelection(),
+      dropCursor(),
+      indentOnInput(),
+      bracketMatching(),
+      closeBrackets(),
+      autocompletion(),
+      rectangularSelection(),
+      crosshairCursor(),
+      highlightActiveLine(),
+      keymap.of([
+        ...closeBracketsKeymap,
+        ...completionKeymap,
+        ...foldKeymap,
+        { key: 'Mod-z', run: undo },
+        { key: 'Mod-y', run: redo },
+      ]),
+      getTheme(theme),
+    ];
+
+    if (syntaxHighlighting) {
+      baseExtensions.push(getLanguageExtension(language));
+    }
+
+    if (lineWrapping) {
+      baseExtensions.push(EditorView.lineWrapping);
+    }
+
+    return baseExtensions;
   };
 
   const handleDownload = () => {
@@ -228,35 +266,11 @@ const CodeEditor = () => {
               <CodeMirror
                 value={window.code}
                 height="auto"
-                extensions={[
-                  syntaxHighlighting ? getLanguageExtension(language) : [],
-                  getTheme(theme),
-                  history(),
-                  keymap.of([
-                    { key: 'Mod-z', run: undo },
-                    { key: 'Mod-y', run: redo },
-                  ]),
-                  autocompletion(),
-                ]}
+                extensions={getExtensions()}
                 onChange={(value) => updateWindowCode(window.id, value)}
                 className={`code-editor ${theme}`}
                 style={{ fontSize: `${fontSize}px` }}
-                basicSetup={{
-                  lineNumbers: showLineNumbers,
-                  foldGutter: true,
-                  highlightActiveLineGutter: true,
-                  highlightSpecialChars: true,
-                  history: true,
-                  drawSelection: true,
-                  dropCursor: true,
-                  allowMultipleSelections: true,
-                  indentOnInput: true,
-                  bracketMatching: true,
-                  closeBrackets: true,
-                  autocompletion: true,
-                  syntaxHighlighting: syntaxHighlighting,
-                  lineWrapping: lineWrapping,
-                }}
+                basicSetup={false}
               />
             </motion.div>
           ))}
