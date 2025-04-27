@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { visualizer } from 'rollup-plugin-visualizer';
 import viteCompression from 'vite-plugin-compression';
-import { VitePWA } from 'vite-plugin-pwa'; // Optional for WASM handling
+import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
   plugins: [
@@ -10,8 +10,10 @@ export default defineConfig({
     viteCompression({ algorithm: 'gzip' }),
     visualizer({ open: true, filename: 'dist/stats.html' }),
     VitePWA({
-      // Optional: Ensure WASM files are treated as assets
-      includeAssets: ['**/*.wasm'],
+      includeAssets: ['**/*.wasm', '**/*.js'], // Ensure WASM and JS files are included
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,wasm}'], // Cache WASM files
+      },
     }),
   ],
   resolve: {
@@ -26,10 +28,13 @@ export default defineConfig({
     terserOptions: {
       compress: {
         drop_debugger: true,
-        pure_funcs: ['console.info', 'console.debug'], // Keep console.warn for debugging
+        pure_funcs: ['console.info', 'console.debug'],
+        keep_fargs: true, // Preserve function arguments to avoid mangling 'e'
+        keep_fnames: true, // Preserve function names
       },
       mangle: {
-        reserved: ['pica', 'L1'], // Prevent mangling of pica-related variables
+        reserved: ['pica', 'L1', 'e', 'resize', 'init'], // Reserve critical pica variables
+        keep_fnames: true, // Prevent mangling of function names
       },
     },
     sourcemap: true,
@@ -51,14 +56,17 @@ export default defineConfig({
             '@uiw/codemirror-theme-dracula',
           ],
           animations: ['framer-motion'],
-          pica: ['pica'], // Explicitly include pica in a separate chunk
+          pica: ['pica'],
         },
       },
     },
-    assetsInclude: ['**/*.wasm'], // Ensure WASM files are included
+    assetsInclude: ['**/*.wasm'], // Explicitly include WASM files
+    outDir: 'dist',
+    assetsDir: 'assets',
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'pica'], // Pre-bundle pica
+    include: ['react', 'react-dom', 'pica'],
+    force: true, // Force pre-bundling of pica
   },
   esbuild: {
     jsxFactory: 'React.createElement',
@@ -66,8 +74,9 @@ export default defineConfig({
   },
   server: {
     fs: {
-      // Allow serving WASM files
       allow: ['.'],
     },
   },
+  // Ensure WASM files are served with correct MIME type
+  assetsInclude: ['**/*.wasm'],
 });
