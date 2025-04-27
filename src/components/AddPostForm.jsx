@@ -6,7 +6,6 @@ import axios from 'axios';
 import DOMPurify from 'dompurify';
 import styled from 'styled-components';
 import { Tooltip } from '@material-ui/core';
-
 // Styled Components (unchanged)
 const FormContainer = styled.div`
   max-width: 1200px;
