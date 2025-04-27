@@ -160,113 +160,131 @@ const AddPostForm = () => {
         return DOMPurify.sanitize(code, codeSanitizeConfig);
     };
 
-      const validateFile = (file, type) => {
+    const validateFile = (file, type) => {
         if (!file) return 'No file selected';
-        const maxSize = 2 * 1024 * 1024; // 2 MB
-        const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        const maxSize = type === 'image' ? 2 * 1024 * 1024 : 50 * 1024 * 1024; // 2MB for images, 50MB for videos
+        if (file.size > maxSize) return `File size exceeds ${type === 'image' ? '2MB' : '50MB'}`;
+        
+        const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
         const validVideoTypes = ['video/mp4', 'video/mpeg', 'video/webm'];
-    
-        if (file.size > maxSize) {
-            return `File size exceeds 2 MB (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
-        }
-    
-        if (type === 'image' && !validImageTypes.includes(file.type)) {
-            return `Invalid image type: ${file.type}. Allowed: JPEG, PNG, GIF`;
-        }
-    
-        if (type === 'video' && !validVideoTypes.includes(file.type)) {
-            return `Invalid video type: ${file.type}. Allowed: MP4, MPEG, WebM`;
-        }
-    
-        return null;
+        const validTypes = type === 'image' ? validImageTypes : validVideoTypes;
+        
+        if (!validTypes.includes(file.type)) return `Invalid ${type} format`;
+        return '';
     };
     
+
+    // Generate file hash
     const generateFileHash = async (file) => {
-        const arrayBuffer = await file.arrayBuffer();
-        const hashBuffer = await crypto.subtle.digest('SHA-256', arrayBuffer);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        try {
+            const arrayBuffer = await file.arrayBuffer();
+            const hashBuffer = await crypto.subtle.digest('SHA-256', arrayBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        } catch (error) {
+            throw new Error(`Failed to generate file hash: ${error.message}`);
+        }
     };
-    
-    // New function to compress and convert image to WebP
+
+    // Compress and convert image to WebP
     const compressAndConvertToWebP = async (file, targetSizeKB = 50) => {
         return new Promise((resolve, reject) => {
             const img = new Image();
             const reader = new FileReader();
-    
+
             reader.onload = async (e) => {
                 img.src = e.target.result;
-    
+
                 img.onload = async () => {
-                    const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d');
-    
-                    // Set initial dimensions
-                    let width = img.width;
-                    let height = img.height;
-                    canvas.width = width;
-                    canvas.height = height;
-    
-                    // Draw image to canvas
-                    ctx.drawImage(img, 0, 0, width, height);
-    
-                    let quality = 0.9; // Start with high quality
-                    let webpBlob;
-    
-                    // Iterative compression to approach target size
-                    while (quality > 0.1) {
-                        try {
-                            webpBlob = await new Promise((resolveBlob) => {
-                                canvas.toBlob(
-                                    (blob) => resolveBlob(blob),
-                                    'image/webp',
-                                    quality
-                                );
-                            });
-    
-                            const sizeKB = webpBlob.size / 1024;
-                            if (sizeKB <= targetSizeKB * 1.2) { // Allow slight overshoot
-                                break;
+                    try {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+
+                        // Set initial dimensions
+                        let width = img.width;
+                        let height = img.height;
+                        canvas.width = width;
+                        canvas.height = height;
+
+                        // Draw image to canvas
+                        ctx.drawImage(img, 0, 0, width, height);
+
+                        let quality = 0.9; // Start with high quality
+                        let webpBlob;
+
+                        // Check if pica is available
+                        const picaInstance = typeof pica === 'function' ? pica() : null;
+
+                        // Iterative compression to approach target size
+                        while (quality > 0.1) {
+                            try {
+                                webpBlob = await new Promise((resolveBlob) => {
+                                    canvas.toBlob(
+                                        (blob) => resolveBlob(blob),
+                                        'image/webp',
+                                        quality
+                                    );
+                                });
+
+                                if (!webpBlob) {
+                                    webpBlob = await new Promise((resolveBlob) => {
+                                        canvas.toBlob((blob) => resolveBlob(blob), 'image/jpeg', 0.8);
+                                    });
+                                    const jpegFile = new File([webpBlob], file.name.replace(/\.[^/.]+$/, '.jpg'), { type: 'image/jpeg' });
+                                    resolve(jpegFile);
+                                }
+
+                                const sizeKB = webpBlob.size / 1024;
+                                if (sizeKB <= targetSizeKB * 1.2) { // Allow slight overshoot
+                                    break;
+                                }
+
+                                // Reduce dimensions if size is still too large
+                                width *= 0.9;
+                                height *= 0.9;
+                                canvas.width = width;
+                                canvas.height = height;
+
+                                // Use pica for high-quality resizing if available, else use canvas
+                                if (picaInstance) {
+                                    await picaInstance.resize(img, canvas, {
+                                        quality: 3, // Highest quality
+                                        alpha: true // Preserve transparency
+                                    });
+                                } else {
+                                    ctx.drawImage(img, 0, 0, width, height);
+                                }
+
+                                quality -= 0.1; // Decrease quality incrementally
+                            } catch (error) {
+                                reject(new Error(`Compression failed: ${error.message}`));
+                                return;
                             }
-    
-                            // Reduce dimensions if size is still too large
-                            width *= 0.9;
-                            height *= 0.9;
-                            canvas.width = width;
-                            canvas.height = height;
-    
-                            // Use pica for high-quality resizing
-                            await pica().resize(img, canvas, {
-                                quality: 3, // Highest quality
-                                alpha: true // Preserve transparency for PNG/GIF
-                            });
-    
-                            quality -= 0.1; // Decrease quality incrementally
-                        } catch (error) {
-                            reject(new Error(`Compression failed: ${error.message}`));
+                        }
+
+                        if (!webpBlob) {
+                            reject(new Error('Failed to compress image to target size'));
                             return;
                         }
+
+                        const webpFile = new File([webpBlob], file.name.replace(/\.[^/.]+$/, '.webp'), {
+                            type: 'image/webp'
+                        });
+                        resolve(webpFile);
+                    } catch (error) {
+                        reject(new Error(`Image processing failed: ${error.message}`));
                     }
-    
-                    if (!webpBlob) {
-                        reject(new Error('Failed to compress image to target size'));
-                        return;
-                    }
-    
-                    const webpFile = new File([webpBlob], file.name.replace(/\.[^/.]+$/, '.webp'), {
-                        type: 'image/webp'
-                    });
-                    resolve(webpFile);
                 };
-    
+
                 img.onerror = () => reject(new Error('Failed to load image'));
             };
-    
+
             reader.onerror = () => reject(new Error('Failed to read file'));
             reader.readAsDataURL(file);
         });
     };
-    
+
+    // Handle image upload
     const handleImageUpload = async (e, setImage, setImageHash, categoryOverride = category, retries = 3) => {
         const file = e.target.files[0];
         setError('');
@@ -274,13 +292,13 @@ const AddPostForm = () => {
             setError('No file selected');
             return;
         }
-    
+
         const error = validateFile(file, 'image');
         if (error) {
             setError(error);
             return;
         }
-    
+
         let compressedFile;
         try {
             // Compress and convert to WebP
@@ -290,53 +308,53 @@ const AddPostForm = () => {
             console.error('Compression error:', error);
             return;
         }
-    
+
         const previewUrl = URL.createObjectURL(compressedFile);
         if (setImage === setTitleImage) {
             setTitleImagePreview(previewUrl);
         }
-    
+
         let attempt = 1;
         while (attempt <= retries) {
             try {
                 console.log(`Uploading image (attempt ${attempt}):`, {
                     name: compressedFile.name,
-                    type: compressedFile.type, // Will be 'image/webp'
+                    type: compressedFile.type,
                     size: compressedFile.size,
                     category: categoryOverride
                 });
-    
+
                 // Get pre-signed URL
                 const res = await axios.post(
                     'https://se3fw2nzc2.execute-api.ap-south-1.amazonaws.com/prod/get-presigned-url',
                     {
-                        fileType: compressedFile.type, // Use WebP MIME type
+                        fileType: compressedFile.type,
                         folder: 'images',
                         category: categoryOverride
                     }
                 );
                 const { signedUrl, publicUrl, key } = res.data;
-    
+
                 // Upload file to S3
                 await axios.put(signedUrl, compressedFile, {
                     headers: { 'Content-Type': compressedFile.type }
                 });
-    
+
                 // Generate file hash
                 const fileHash = await generateFileHash(compressedFile);
-    
+
                 // Store metadata in DynamoDB
                 await axios.post(
                     'https://se3fw2nzc2.execute-api.ap-south-1.amazonaws.com/prod/store-metadata',
                     { fileKey: key, fileHash, fileType: 'images', category: categoryOverride, userId: user.id }
                 );
-    
+
                 // Verify S3 URL
                 const response = await fetch(publicUrl);
                 if (!response.ok) {
                     throw new Error(`S3 URL not accessible: ${response.status}`);
                 }
-    
+
                 setImage(publicUrl);
                 setImageHash(fileHash);
                 console.log('Image uploaded:', { filePath: publicUrl, fileHash });
@@ -359,6 +377,7 @@ const AddPostForm = () => {
         }
     };
 
+    // Handle video upload
     const handleVideoUpload = async (e, setVideo, setVideoHash, categoryOverride = category, retries = 3) => {
         const file = e.target.files[0];
         setError('');
