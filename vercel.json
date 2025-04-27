@@ -8,15 +8,6 @@
           "value": "max-age=0"
         }
       ]
-    },
-    {
-      "source": "/assets/(.*).js",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/javascript"
-        }
-      ]
     }
   ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
