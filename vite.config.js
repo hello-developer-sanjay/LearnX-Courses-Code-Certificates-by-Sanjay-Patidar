@@ -10,9 +10,9 @@ export default defineConfig({
     viteCompression({ algorithm: 'gzip' }),
     visualizer({ open: true, filename: 'dist/stats.html' }),
     VitePWA({
-      includeAssets: ['**/*.wasm', '**/*.js'], // Ensure WASM and JS files are included
+      includeAssets: ['**/*.wasm', '**/*.js', '**/*.css', '**/*.html'], // Include all assets
       workbox: {
-        globPatterns: ['**/*.{js,css,html,wasm}'], // Cache WASM files
+        globPatterns: ['**/*.{js,css,html,wasm}'], // Cache WASM and other assets
       },
     }),
   ],
@@ -24,19 +24,7 @@ export default defineConfig({
     },
   },
   build: {
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_debugger: true,
-        pure_funcs: ['console.info', 'console.debug'],
-        keep_fargs: true, // Preserve function arguments to avoid mangling 'e'
-        keep_fnames: true, // Preserve function names
-      },
-      mangle: {
-        reserved: ['pica', 'L1', 'e', 'resize', 'init'], // Reserve critical pica variables
-        keep_fnames: true, // Prevent mangling of function names
-      },
-    },
+    minify: 'esbuild', // Switch to Esbuild for safer minification
     sourcemap: true,
     rollupOptions: {
       output: {
@@ -56,17 +44,20 @@ export default defineConfig({
             '@uiw/codemirror-theme-dracula',
           ],
           animations: ['framer-motion'],
-          pica: ['pica'],
+          // Remove pica from manualChunks since we'll load it from CDN
         },
       },
     },
-    assetsInclude: ['**/*.wasm'], // Explicitly include WASM files
+    assetsInclude: ['**/*.wasm'], // Include WASM files
     outDir: 'dist',
     assetsDir: 'assets',
+    commonjsOptions: {
+      transformMixedEsModules: true, // Transform CommonJS to ESM
+    },
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'pica'],
-    force: true, // Force pre-bundling of pica
+    include: ['react', 'react-dom'], // Remove pica since we'll load it from CDN
+    force: true,
   },
   esbuild: {
     jsxFactory: 'React.createElement',
@@ -77,6 +68,4 @@ export default defineConfig({
       allow: ['.'],
     },
   },
-  // Ensure WASM files are served with correct MIME type
-  assetsInclude: ['**/*.wasm'],
 });
