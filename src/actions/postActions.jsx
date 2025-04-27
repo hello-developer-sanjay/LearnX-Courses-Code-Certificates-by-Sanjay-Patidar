@@ -8,8 +8,6 @@ import {
     FETCH_USER_POSTS_SUCCESS,
     FETCH_USER_POSTS_REQUEST,
     FETCH_USER_POSTS_FAILURE,
-    UPDATE_POST_SUCCESS,
-    DELETE_POST_SUCCESS,
     SEARCH_POSTS_SUCCESS,
     SEARCH_POSTS_FAILURE,
     FETCH_COMPLETED_POSTS_SUCCESS,
@@ -18,8 +16,6 @@ import {
     FETCH_POST_SUCCESS
 } from './types';
 import { fetchCertificates } from './certificateActions';
-import { addNotification } from './notificationActions';
-
 const API_BASE_URL = 'https://se3fw2nzc2.execute-api.ap-south-1.amazonaws.com/prod/api/posts';
 
 export const fetchPostBySlug = (slug) => async dispatch => {
