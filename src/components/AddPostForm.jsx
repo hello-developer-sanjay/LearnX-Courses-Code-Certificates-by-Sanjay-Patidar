@@ -160,306 +160,324 @@ const AddPostForm = () => {
         return DOMPurify.sanitize(code, codeSanitizeConfig);
     };
 
-    const validateFile = (file, type) => {
-        if (!file) return 'No file selected';
-        const maxSize = type === 'image' ? 2 * 1024 * 1024 : 50 * 1024 * 1024; // 2MB for images, 50MB for videos
-        if (file.size > maxSize) return `File size exceeds ${type === 'image' ? '2MB' : '50MB'}`;
-        
-        const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-        const validVideoTypes = ['video/mp4', 'video/mpeg', 'video/webm'];
-        const validTypes = type === 'image' ? validImageTypes : validVideoTypes;
-        
-        if (!validTypes.includes(file.type)) return `Invalid ${type} format`;
-        return '';
-    };
-    
+// File validation
+const validateFile = (file, type) => {
+    if (!file) return 'No file selected';
+    const maxSize = type === 'image' ? 2 * 1024 * 1024 : 50 * 1024 * 1024;
+    if (file.size > maxSize) return `File size exceeds ${type === 'image' ? '2MB' : '50MB'}`;
+    const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+    const validVideoTypes = ['video/mp4', 'video/mpeg', 'video/webm'];
+    const validTypes = type === 'image' ? validImageTypes : validVideoTypes;
+    if (!validTypes.includes(file.type)) return `Invalid ${type} format`;
+    return '';
+  };
 
-    // Generate file hash
-    const generateFileHash = async (file) => {
-        try {
-            const arrayBuffer = await file.arrayBuffer();
-            const hashBuffer = await crypto.subtle.digest('SHA-256', arrayBuffer);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-        } catch (error) {
-            throw new Error(`Failed to generate file hash: ${error.message}`);
+  // Generate file hash
+  async function generateFileHash(file) {
+    try {
+      const arrayBuffer = await file.arrayBuffer();
+      const hashBuffer = await crypto.subtle.digest('SHA-256', arrayBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
+    } catch (err) {
+      throw new Error(`Failed to generate file hash: ${err.message}`);
+    }
+  }
+
+  // Compress and convert to WebP
+  function compressAndConvertToWebP(file, targetSizeKB = 50) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      const reader = new FileReader();
+
+      function handleReaderLoad(event) {
+        img.src = event.target.result;
+
+        async function handleImageLoad() {
+          try {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            let width = img.width;
+            let height = img.height;
+            canvas.width = width;
+            canvas.height = height;
+
+            ctx.drawImage(img, 0, 0, width, height);
+
+            let quality = 0.9;
+            let webpBlob;
+
+            // Check pica availability
+            const picaInstance = typeof pica === 'function' ? pica() : null;
+            console.log('Pica availability:', !!picaInstance, 'File:', file.name); // Debug log
+
+            while (quality > 0.1) {
+              try {
+                webpBlob = await new Promise((resolveBlob) => {
+                  canvas.toBlob(
+                    (blob) => resolveBlob(blob),
+                    'image/webp',
+                    quality
+                  );
+                });
+
+                if (!webpBlob) {
+                  throw new Error('Failed to create WebP blob');
+                }
+
+                const sizeKB = webpBlob.size / 1024;
+                if (sizeKB <= targetSizeKB * 1.2) {
+                  break;
+                }
+
+                width *= 0.9;
+                height *= 0.9;
+                canvas.width = width;
+                canvas.height = height;
+
+                // Use pica if available
+                if (picaInstance) {
+                  try {
+                    await picaInstance.resize(img, canvas, {
+                      quality: 3,
+                      alpha: true,
+                    });
+                  } catch (picaErr) {
+                    console.warn(`Pica resizing failed for ${file.name}:`, picaErr);
+                    ctx.drawImage(img, 0, 0, width, height); // Fallback to canvas
+                  }
+                } else {
+                  console.warn(`Pica not available for ${file.name}, using canvas resizing`);
+                  ctx.drawImage(img, 0, 0, width, height);
+                }
+
+                quality -= 0.1;
+              } catch (err) {
+                reject(new Error(`Compression failed for ${file.name}: ${err.message}`));
+                return;
+              }
+            }
+
+            if (!webpBlob) {
+              // Fallback to JPEG
+              webpBlob = await new Promise((resolveBlob) => {
+                canvas.toBlob(
+                  (blob) => resolveBlob(blob),
+                  'image/jpeg',
+                  0.8
+                );
+              });
+              if (!webpBlob) {
+                reject(new Error(`Failed to compress ${file.name} to target size`));
+                return;
+              }
+              const jpegFile = new File(
+                [webpBlob],
+                file.name.replace(/\.[^/.]+$/, '.jpg'),
+                { type: 'image/jpeg' }
+              );
+              resolve(jpegFile);
+              return;
+            }
+
+            const webpFile = new File(
+              [webpBlob],
+              file.name.replace(/\.[^/.]+$/, '.webp'),
+              { type: 'image/webp' }
+            );
+            resolve(webpFile);
+          } catch (err) {
+            reject(new Error(`Image processing failed for ${file.name}: ${err.message}`));
+          }
         }
-    };
 
-    // Compress and convert image to WebP
-    const compressAndConvertToWebP = async (file, targetSizeKB = 50) => {
-        return new Promise((resolve, reject) => {
-            const img = new Image();
-            const reader = new FileReader();
+        img.onload = handleImageLoad;
+        img.onerror = () => reject(new Error(`Failed to load image: ${file.name}`));
+      }
 
-            reader.onload = async (e) => {
-                img.src = e.target.result;
+      reader.onload = handleReaderLoad;
+      reader.onerror = () => reject(new Error(`Failed to read file: ${file.name}`));
+      reader.readAsDataURL(file);
+    });
+  }
 
-                img.onload = async () => {
-                    try {
-                        const canvas = document.createElement('canvas');
-                        const ctx = canvas.getContext('2d');
+  // Handle image upload
+  async function handleImageUpload(event, setImage, setImageHash, categoryOverride = category, retries = 3) {
+    const file = event.target.files[0];
+    setError('');
+    if (!file) {
+      setError('No file selected');
+      return;
+    }
 
-                        // Set initial dimensions
-                        let width = img.width;
-                        let height = img.height;
-                        canvas.width = width;
-                        canvas.height = height;
+    const validationError = validateFile(file, 'image');
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
 
-                        // Draw image to canvas
-                        ctx.drawImage(img, 0, 0, width, height);
+    let compressedFile;
+    try {
+      compressedFile = await compressAndConvertToWebP(file, 50);
+    } catch (err) {
+      setError(`Error compressing image ${file.name}: ${err.message}`);
+      console.error('Compression error:', err);
+      return;
+    }
 
-                        let quality = 0.9; // Start with high quality
-                        let webpBlob;
+    const previewUrl = URL.createObjectURL(compressedFile);
+    if (setImage === setTitleImage) {
+      setTitleImagePreview(previewUrl);
+    }
 
-                        // Check if pica is available
-                        const picaInstance = typeof pica === 'function' ? pica() : null;
-
-                        // Iterative compression to approach target size
-                        while (quality > 0.1) {
-                            try {
-                                webpBlob = await new Promise((resolveBlob) => {
-                                    canvas.toBlob(
-                                        (blob) => resolveBlob(blob),
-                                        'image/webp',
-                                        quality
-                                    );
-                                });
-
-                                if (!webpBlob) {
-                                    webpBlob = await new Promise((resolveBlob) => {
-                                        canvas.toBlob((blob) => resolveBlob(blob), 'image/jpeg', 0.8);
-                                    });
-                                    const jpegFile = new File([webpBlob], file.name.replace(/\.[^/.]+$/, '.jpg'), { type: 'image/jpeg' });
-                                    resolve(jpegFile);
-                                }
-
-                                const sizeKB = webpBlob.size / 1024;
-                                if (sizeKB <= targetSizeKB * 1.2) { // Allow slight overshoot
-                                    break;
-                                }
-
-                                // Reduce dimensions if size is still too large
-                                width *= 0.9;
-                                height *= 0.9;
-                                canvas.width = width;
-                                canvas.height = height;
-
-                                // Use pica for high-quality resizing if available, else use canvas
-                                if (picaInstance) {
-                                    await picaInstance.resize(img, canvas, {
-                                        quality: 3, // Highest quality
-                                        alpha: true // Preserve transparency
-                                    });
-                                } else {
-                                    ctx.drawImage(img, 0, 0, width, height);
-                                }
-
-                                quality -= 0.1; // Decrease quality incrementally
-                            } catch (error) {
-                                reject(new Error(`Compression failed: ${error.message}`));
-                                return;
-                            }
-                        }
-
-                        if (!webpBlob) {
-                            reject(new Error('Failed to compress image to target size'));
-                            return;
-                        }
-
-                        const webpFile = new File([webpBlob], file.name.replace(/\.[^/.]+$/, '.webp'), {
-                            type: 'image/webp'
-                        });
-                        resolve(webpFile);
-                    } catch (error) {
-                        reject(new Error(`Image processing failed: ${error.message}`));
-                    }
-                };
-
-                img.onerror = () => reject(new Error('Failed to load image'));
-            };
-
-            reader.onerror = () => reject(new Error('Failed to read file'));
-            reader.readAsDataURL(file);
+    let attempt = 1;
+    while (attempt <= retries) {
+      try {
+        console.log(`Uploading image (attempt ${attempt}):`, {
+          name: compressedFile.name,
+          type: compressedFile.type,
+          size: compressedFile.size,
+          category: categoryOverride,
         });
-    };
 
-    // Handle image upload
-    const handleImageUpload = async (e, setImage, setImageHash, categoryOverride = category, retries = 3) => {
-        const file = e.target.files[0];
-        setError('');
-        if (!file) {
-            setError('No file selected');
-            return;
+        const res = await axios.post(
+          'https://se3fw2nzc2.execute-api.ap-south-1.amazonaws.com/prod/get-presigned-url',
+          {
+            fileType: compressedFile.type,
+            folder: 'images',
+            category: categoryOverride,
+          }
+        );
+        const { signedUrl, publicUrl, key } = res.data;
+
+        await axios.put(signedUrl, compressedFile, {
+          headers: { 'Content-Type': compressedFile.type },
+        });
+
+        const fileHash = await generateFileHash(compressedFile);
+
+        await axios.post(
+          'https://se3fw2nzc2.execute-api.ap-south-1.amazonaws.com/prod/store-metadata',
+          {
+            fileKey: key,
+            fileHash,
+            fileType: 'images',
+            category: categoryOverride,
+            userId: user.id,
+          }
+        );
+
+        const response = await fetch(publicUrl);
+        if (!response.ok) {
+          throw new Error(`S3 URL not accessible: ${response.status}`);
         }
 
-        const error = validateFile(file, 'image');
-        if (error) {
-            setError(error);
-            return;
+        setImage(publicUrl);
+        setImageHash(fileHash);
+        console.log('Image uploaded:', { filePath: publicUrl, fileHash });
+        return;
+      } catch (err) {
+        console.error(`Image upload attempt ${attempt} failed:`, err);
+        if (attempt === retries) {
+          const errorMsg = err.response?.data?.error || err.message;
+          setError(`Error uploading image ${file.name}: ${errorMsg}`);
+          console.error('Error uploading image:', {
+            message: err.message,
+            response: err.response?.data,
+            status: err.response?.status,
+          });
+          return;
+        }
+        attempt++;
+        await new Promise((resolve) => setTimeout(resolve, 1000 * attempt));
+      }
+    }
+  }
+
+  // Handle video upload (unchanged for brevity)
+  async function handleVideoUpload(event, setVideo, setVideoHash, categoryOverride = category, retries = 3) {
+    const file = event.target.files[0];
+    setError('');
+    if (!file) {
+      setError('No file selected');
+      return;
+    }
+
+    const validationError = validateFile(file, 'video');
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+
+    const previewUrl = URL.createObjectURL(file);
+    if (setVideo === setVideo) {
+      setVideoPreview(previewUrl);
+    }
+
+    let attempt = 1;
+    while (attempt <= retries) {
+      try {
+        console.log(`Uploading video (attempt ${attempt}):`, {
+          name: file.name,
+          type: file.type,
+          size: file.size,
+          category: categoryOverride,
+        });
+
+        const res = await axios.post(
+          'https://se3fw2nzc2.execute-api.ap-south-1.amazonaws.com/prod/get-presigned-url',
+          {
+            fileType: file.type,
+            folder: 'videos',
+            category: categoryOverride,
+          }
+        );
+        const { signedUrl, publicUrl, key } = res.data;
+
+        await axios.put(signedUrl, file, {
+          headers: { 'Content-Type': file.type },
+        });
+
+        const fileHash = await generateFileHash(file);
+
+        await axios.post(
+          'https://se3fw2nzc2.execute-api.ap-south-1.amazonaws.com/prod/store-metadata',
+          {
+            fileKey: key,
+            fileHash,
+            fileType: 'videos',
+            category: categoryOverride,
+            userId: user.id,
+          }
+        );
+
+        const response = await fetch(publicUrl);
+        if (!response.ok) {
+          throw new Error(`S3 URL not accessible: ${response.status}`);
         }
 
-        let compressedFile;
-        try {
-            // Compress and convert to WebP
-            compressedFile = await compressAndConvertToWebP(file, 50);
-        } catch (error) {
-            setError(`Error compressing image: ${error.message}`);
-            console.error('Compression error:', error);
-            return;
+        setVideo(publicUrl);
+        setVideoHash(fileHash);
+        console.log('Video uploaded:', { filePath: publicUrl, fileHash });
+        return;
+      } catch (err) {
+        console.error(`Video upload attempt ${attempt} failed:`, err);
+        if (attempt === retries) {
+          const errorMsg = err.response?.data?.error || err.message;
+          setError(`Error uploading video ${file.name}: ${errorMsg}`);
+          console.error('Error uploading video:', {
+            message: err.message,
+            response: err.response?.data,
+            status: err.response?.status,
+          });
+          return;
         }
-
-        const previewUrl = URL.createObjectURL(compressedFile);
-        if (setImage === setTitleImage) {
-            setTitleImagePreview(previewUrl);
-        }
-
-        let attempt = 1;
-        while (attempt <= retries) {
-            try {
-                console.log(`Uploading image (attempt ${attempt}):`, {
-                    name: compressedFile.name,
-                    type: compressedFile.type,
-                    size: compressedFile.size,
-                    category: categoryOverride
-                });
-
-                // Get pre-signed URL
-                const res = await axios.post(
-                    'https://se3fw2nzc2.execute-api.ap-south-1.amazonaws.com/prod/get-presigned-url',
-                    {
-                        fileType: compressedFile.type,
-                        folder: 'images',
-                        category: categoryOverride
-                    }
-                );
-                const { signedUrl, publicUrl, key } = res.data;
-
-                // Upload file to S3
-                await axios.put(signedUrl, compressedFile, {
-                    headers: { 'Content-Type': compressedFile.type }
-                });
-
-                // Generate file hash
-                const fileHash = await generateFileHash(compressedFile);
-
-                // Store metadata in DynamoDB
-                await axios.post(
-                    'https://se3fw2nzc2.execute-api.ap-south-1.amazonaws.com/prod/store-metadata',
-                    { fileKey: key, fileHash, fileType: 'images', category: categoryOverride, userId: user.id }
-                );
-
-                // Verify S3 URL
-                const response = await fetch(publicUrl);
-                if (!response.ok) {
-                    throw new Error(`S3 URL not accessible: ${response.status}`);
-                }
-
-                setImage(publicUrl);
-                setImageHash(fileHash);
-                console.log('Image uploaded:', { filePath: publicUrl, fileHash });
-                return;
-            } catch (error) {
-                console.error(`Image upload attempt ${attempt} failed:`, error);
-                if (attempt === retries) {
-                    const errorMsg = error.response?.data?.error || error.message;
-                    setError(`Error uploading image: ${errorMsg}`);
-                    console.error('Error uploading image:', {
-                        message: error.message,
-                        response: error.response?.data,
-                        status: error.response?.status
-                    });
-                    return;
-                }
-                attempt++;
-                await new Promise(resolve => setTimeout(resolve, 1000 * attempt));
-            }
-        }
-    };
-
-    // Handle video upload
-    const handleVideoUpload = async (e, setVideo, setVideoHash, categoryOverride = category, retries = 3) => {
-        const file = e.target.files[0];
-        setError('');
-        if (!file) {
-            setError('No file selected');
-            return;
-        }
-
-        const error = validateFile(file, 'video');
-        if (error) {
-            setError(error);
-            return;
-        }
-
-        const previewUrl = URL.createObjectURL(file);
-        if (setVideo === setVideo) {
-            setVideoPreview(previewUrl);
-        }
-
-        let attempt = 1;
-        while (attempt <= retries) {
-            try {
-                console.log(`Uploading video (attempt ${attempt}):`, {
-                    name: file.name,
-                    type: file.type,
-                    size: file.size,
-                    category: categoryOverride
-                });
-
-                // Get pre-signed URL
-                const res = await axios.post(
-                    'https://se3fw2nzc2.execute-api.ap-south-1.amazonaws.com/prod/get-presigned-url',
-                    {
-                        fileType: file.type,
-                        folder: 'videos',
-                        category: categoryOverride
-                    }
-                );
-                const { signedUrl, publicUrl, key } = res.data;
-
-                // Upload file to S3
-                await axios.put(signedUrl, file, {
-                    headers: { 'Content-Type': file.type }
-                });
-
-                // Generate file hash
-                const fileHash = await generateFileHash(file);
-
-                // Store metadata in DynamoDB
-                await axios.post(
-                    'https://se3fw2nzc2.execute-api.ap-south-1.amazonaws.com/prod/store-metadata',
-                    { fileKey: key, fileHash, fileType: 'videos', category: categoryOverride, userId: user.id }
-                );
-
-                // Verify S3 URL
-                const response = await fetch(publicUrl);
-                if (!response.ok) {
-                    throw new Error(`S3 URL not accessible: ${response.status}`);
-                }
-
-                setVideo(publicUrl);
-                setVideoHash(fileHash);
-                console.log('Video uploaded:', { filePath: publicUrl, fileHash });
-                return;
-            } catch (error) {
-                console.error(`Video upload attempt ${attempt} failed:`, error);
-                if (attempt === retries) {
-                    const errorMsg = error.response?.data?.error || error.message;
-                    setError(`Error uploading video: ${errorMsg}`);
-                    console.error('Error uploading video:', {
-                        message: error.message,
-                        response: error.response?.data,
-                        status: error.response?.status
-                    });
-                    return;
-                }
-                attempt++;
-                await new Promise(resolve => setTimeout(resolve, 1000 * attempt));
-            }
-        }
-    };
-
+        attempt++;
+        await new Promise((resolve) => setTimeout(resolve, 1000 * attempt));
+      }
+    }
+  }
     const handleSuperTitleChange = (index, field, value) => {
         const newSuperTitles = [...superTitles];
         newSuperTitles[index][field] = value;
