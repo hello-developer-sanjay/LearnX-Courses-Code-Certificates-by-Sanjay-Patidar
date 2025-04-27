@@ -7,7 +7,6 @@ import styled, { css } from 'styled-components';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import DOMPurify from 'dompurify';
 import { RingLoader } from 'react-spinners';
-// Lazy-loaded components
 const Toast = lazy(() =>
   import('react-toastify').then(module => ({
     default: module.ToastContainer,
