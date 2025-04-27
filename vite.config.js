@@ -4,41 +4,19 @@ import react from '@vitejs/plugin-react';
 import { visualizer } from 'rollup-plugin-visualizer';
 import viteCompression from 'vite-plugin-compression';
 import { VitePWA } from 'vite-plugin-pwa';
-import postcssNesting from 'postcss-nesting';
 
 export default defineConfig({
   plugins: [
-    react({
-      // Enable Styled Components support
-      babel: {
-        plugins: ['styled-components'],
-      },
-    }),
-    viteCompression({ algorithm: 'gzip', threshold: 1024 }), // Compress files > 1KB
+    react(),
+    viteCompression({ algorithm: 'gzip' }),
     visualizer({ open: true, filename: 'dist/stats.html' }),
-    VitePWA({
-      includeAssets: ['**/*.js', '**/*.css', '**/*.html', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.webp', '**/*.mp4', '**/*.mpeg', '**/*.webm'],
-      workbox: {
-        globPatterns: ['**/*.{js,css,html,png,jpg,jpeg,gif,webp,mp4,mpeg,webm}'],
-        maximumFileSizeToCacheInBytes: 3 * 1024 * 1024, // 3 MB
-      },
-    }),
+    
   ],
   resolve: {
     alias: {
       '@components': '/src/components',
       '@pages': '/src/pages',
       '@actions': '/src/actions',
-    },
-  },
-  css: {
-    postcss: {
-      plugins: [
-        postcssNesting(), // Support CSS nesting
-        // Add Tailwind CSS if used
-        require('tailwindcss')(),
-        require('autoprefixer')(),
-      ],
     },
   },
   build: {
@@ -67,26 +45,18 @@ export default defineConfig({
             '@uiw/codemirror-theme-dracula',
           ],
           animations: ['framer-motion'],
-          styles: ['styled-components'], // Separate chunk for Styled Components
         },
       },
     },
   },
   optimizeDeps: {
-    include: [
-      'react',
-      'react-dom',
-      '@uiw/react-codemirror',
-      '@codemirror/lang-javascript',
-      'styled-components',
-      'framer-motion',
-    ],
+    include: ['react', 'react-dom', '@uiw/react-codemirror', '@codemirror/lang-javascript'],
     force: true,
   },
   esbuild: {
     jsxFactory: 'React.createElement',
     jsxFragment: 'React.Fragment',
-    charset: 'utf8',
+    charset: 'utf8', // Ensure UTF-8 encoding
   },
   server: {
     fs: {
