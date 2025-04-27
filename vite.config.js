@@ -13,6 +13,22 @@ export default defineConfig({
       includeAssets: ['**/*.js', '**/*.css', '**/*.html', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.webp', '**/*.mp4', '**/*.mpeg', '**/*.webm'],
       workbox: {
         globPatterns: ['**/*.{js,css,html,png,jpg,jpeg,gif,webp,mp4,mpeg,webm}'],
+        runtimeCaching: [
+          {
+            urlPattern: /\.(?:png|jpg|jpeg|gif|webp|mp4|mpeg|webm)$/,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'media-cache',
+              expiration: {
+                maxEntries: 100,
+                maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+        ],
       },
     }),
   ],
@@ -44,6 +60,9 @@ export default defineConfig({
             '@uiw/codemirror-theme-dracula',
           ],
           animations: ['framer-motion'],
+          syntax: ['react-syntax-highlighter'],
+          zoom: ['react-medium-image-zoom'],
+          toast: ['react-toastify'],
         },
       },
     },
