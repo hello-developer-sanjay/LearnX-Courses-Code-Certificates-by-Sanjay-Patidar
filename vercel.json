@@ -17,15 +17,6 @@
           "value": "application/javascript"
         }
       ]
-    },
-    {
-      "source": "/assets/(.*).css",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/css"
-        }
-      ]
     }
   ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
