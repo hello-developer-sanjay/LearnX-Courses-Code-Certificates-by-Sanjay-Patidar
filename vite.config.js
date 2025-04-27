@@ -14,6 +14,7 @@ export default defineConfig({
       includeAssets: ['**/*.js', '**/*.css', '**/*.html', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.webp', '**/*.mp4', '**/*.mpeg', '**/*.webm'],
       workbox: {
         globPatterns: ['**/*.{js,css,html,png,jpg,jpeg,gif,webp,mp4,mpeg,webm}'],
+        maximumFileSizeToCacheInBytes: 3 * 1024 * 1024, // Set to 3 MB (3,145,728 bytes)
       },
     }),
   ],
