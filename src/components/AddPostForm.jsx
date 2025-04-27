@@ -6,6 +6,7 @@ import axios from 'axios';
 import DOMPurify from 'dompurify';
 import styled from 'styled-components';
 import { Tooltip } from '@material-ui/core';
+
 // Styled Components (unchanged)
 const FormContainer = styled.div`
   max-width: 1200px;
@@ -150,22 +151,7 @@ const AddPostForm = () => {
     { superTitle: '', attributes: [{ attribute: '', items: [{ title: '', bulletPoints: [''] }] }] },
   ]);
 
-  // Load pica from CDN
-  const [picaInstance, setPicaInstance] = useState(null);
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      import('https://cdn.jsdelivr.net/npm/pica@9.0.1/dist/pica.min.js')
-        .then((module) => {
-          const pica = module.default;
-          setPicaInstance(pica());
-          console.log('Pica loaded from CDN');
-        })
-        .catch((err) => {
-          console.warn('Failed to load pica from CDN:', err);
-          setPicaInstance(null);
-        });
-    }
-  }, []);
+
 
   // Sanitization configuration for code snippets
   const codeSanitizeConfig = {
@@ -202,15 +188,15 @@ const AddPostForm = () => {
     }
   }
 
-  // Compress and convert to WebP
-  function compressAndConvertToWebP(file, targetSizeKB = 50) {
+// In AddPostForm.jsx, replace compressAndConvertToWebP with:
+function compressAndConvertToWebP(file, targetSizeKB = 50) {
     return new Promise((resolve, reject) => {
       const img = new Image();
       const reader = new FileReader();
-
+  
       function handleReaderLoad(event) {
         img.src = event.target.result;
-
+  
         async function handleImageLoad() {
           try {
             const canvas = document.createElement('canvas');
@@ -218,65 +204,44 @@ const AddPostForm = () => {
             if (!ctx) {
               throw new Error('Failed to get canvas context');
             }
-
+  
             let width = img.width;
             let height = img.height;
             canvas.width = width;
             canvas.height = height;
-
+  
             ctx.drawImage(img, 0, 0, width, height);
-
+  
             let quality = 0.9;
             let webpBlob;
-
-            console.log('Pica instance:', !!picaInstance, 'File:', file.name); // Debug log
-
+  
             while (quality > 0.1) {
-              try {
-                webpBlob = await new Promise((resolveBlob) => {
-                  canvas.toBlob(
-                    (blob) => resolveBlob(blob),
-                    'image/webp',
-                    quality
-                  );
-                });
-
-                if (!webpBlob) {
-                  throw new Error('Failed to create WebP blob');
-                }
-
-                const sizeKB = webpBlob.size / 1024;
-                if (sizeKB <= targetSizeKB * 1.2) {
-                  break;
-                }
-
-                width *= 0.9;
-                height *= 0.9;
-                canvas.width = width;
-                canvas.height = height;
-
-                if (picaInstance) {
-                  try {
-                    await picaInstance.resize(img, canvas, {
-                      quality: 3,
-                      alpha: true,
-                    });
-                  } catch (picaErr) {
-                    console.warn(`Pica resizing failed for ${file.name}:`, picaErr);
-                    ctx.drawImage(img, 0, 0, width, height); // Fallback to canvas
-                  }
-                } else {
-                  console.log(`Pica not available for ${file.name}, using canvas resizing`);
-                  ctx.drawImage(img, 0, 0, width, height);
-                }
-
-                quality -= 0.1;
-              } catch (err) {
-                reject(new Error(`Compression failed for ${file.name}: ${err.message}`));
-                return;
+              webpBlob = await new Promise((resolveBlob) => {
+                canvas.toBlob(
+                  (blob) => resolveBlob(blob),
+                  'image/webp',
+                  quality
+                );
+              });
+  
+              if (!webpBlob) {
+                throw new Error('Failed to create WebP blob');
               }
+  
+              const sizeKB = webpBlob.size / 1024;
+              if (sizeKB <= targetSizeKB * 1.2) {
+                break;
+              }
+  
+              width *= 0.9;
+              height *= 0.9;
+              canvas.width = width;
+              canvas.height = height;
+              ctx.drawImage(img, 0, 0, width, height);
+  
+              quality -= 0.1;
             }
-
+  
             if (!webpBlob) {
               webpBlob = await new Promise((resolveBlob) => {
                 canvas.toBlob(
@@ -297,7 +262,7 @@ const AddPostForm = () => {
               resolve(jpegFile);
               return;
             }
-
+  
             const webpFile = new File(
               [webpBlob],
               file.name.replace(/\.[^/.]+$/, '.webp'),
@@ -308,11 +273,11 @@ const AddPostForm = () => {
             reject(new Error(`Image processing failed for ${file.name}: ${err.message}`));
           }
         }
-
+  
         img.onload = handleImageLoad;
         img.onerror = () => reject(new Error(`Failed to load image: ${file.name}`));
       }
-
+  
       reader.onload = handleReaderLoad;
       reader.onerror = () => reject(new Error(`Failed to read file: ${file.name}`));
       reader.readAsDataURL(file);
