@@ -1,41 +1,7 @@
 {
   "headers": [
     {
-      "source": "/assets/*.(png|jpg|jpeg|gif|webp)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "image/*"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        },
-        {
-          "key": "Content-Encoding",
-          "value": "br"
-        }
-      ]
-    },
-    {
-      "source": "/assets/*.(mp4|mpeg|webm)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "video/*"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        },
-        {
-          "key": "Content-Encoding",
-          "value": "br"
-        }
-      ]
-    },
-    {
-      "source": "/assets/*.(js|css|html)",
+      "source": "/(.*)\\.(js|css|html)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -44,22 +10,13 @@
         {
           "key": "Content-Encoding",
           "value": "br"
-        }
-      ]
-    },
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Expect-CT",
-          "value": "max-age=0"
         }
       ]
     }
   ],
   "rewrites": [
     {
-      "source": "/((?!assets/).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
