@@ -2,16 +2,16 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { visualizer } from 'rollup-plugin-visualizer';
 import viteCompression from 'vite-plugin-compression';
-import { VitePWA } from 'vite-plugin-pwa';
+import { VitePWA } from 'vite-plugin-pwa'; // Optional for WASM handling
 
 export default defineConfig({
   plugins: [
     react(),
-    viteCompression({ algorithm: 'gzip' }), // Compress assets
-    visualizer({ open: true, filename: 'dist/stats.html' }), // Bundle analysis
+    viteCompression({ algorithm: 'gzip' }),
+    visualizer({ open: true, filename: 'dist/stats.html' }),
     VitePWA({
-      registerType: 'autoUpdate',
-      includeAssets: ['**/*.{js,css,html,png,jpg,webp,wasm}'], // Ensure WASM assets are included
+      // Optional: Ensure WASM files are treated as assets
+      includeAssets: ['**/*.wasm'],
     }),
   ],
   resolve: {
@@ -26,14 +26,13 @@ export default defineConfig({
     terserOptions: {
       compress: {
         drop_debugger: true,
-        // Avoid removing console.error to aid debugging
-        pure_funcs: ['console.info', 'console.debug', 'console.warn'],
+        pure_funcs: ['console.info', 'console.debug'], // Keep console.warn for debugging
       },
       mangle: {
-        reserved: ['pica', 'L1'], // Prevent mangling of pica-related names
+        reserved: ['pica', 'L1'], // Prevent mangling of pica-related variables
       },
     },
-    sourcemap: true, // Enable sourcemaps for debugging
+    sourcemap: true,
     rollupOptions: {
       output: {
         manualChunks: {
@@ -52,7 +51,7 @@ export default defineConfig({
             '@uiw/codemirror-theme-dracula',
           ],
           animations: ['framer-motion'],
-          pica: ['pica'], // Explicitly separate pica to ensure proper loading
+          pica: ['pica'], // Explicitly include pica in a separate chunk
         },
       },
     },
