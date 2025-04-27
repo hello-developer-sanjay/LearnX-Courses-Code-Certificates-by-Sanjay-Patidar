@@ -10,9 +10,9 @@ export default defineConfig({
     viteCompression({ algorithm: 'gzip' }),
     visualizer({ open: true, filename: 'dist/stats.html' }),
     VitePWA({
-      includeAssets: ['**/*.wasm', '**/*.js', '**/*.css', '**/*.html'], // Include all assets
+      includeAssets: ['**/*.js', '**/*.css', '**/*.html', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.webp', '**/*.mp4', '**/*.mpeg', '**/*.webm'],
       workbox: {
-        globPatterns: ['**/*.{js,css,html,wasm}'], // Cache WASM and other assets
+        globPatterns: ['**/*.{js,css,html,png,jpg,jpeg,gif,webp,mp4,mpeg,webm}'],
       },
     }),
   ],
@@ -24,7 +24,7 @@ export default defineConfig({
     },
   },
   build: {
-    minify: 'esbuild', // Switch to Esbuild for safer minification
+    minify: 'esbuild',
     sourcemap: true,
     rollupOptions: {
       output: {
@@ -44,19 +44,17 @@ export default defineConfig({
             '@uiw/codemirror-theme-dracula',
           ],
           animations: ['framer-motion'],
-          // Remove pica from manualChunks since we'll load it from CDN
         },
       },
     },
-    assetsInclude: ['**/*.wasm'], // Include WASM files
     outDir: 'dist',
     assetsDir: 'assets',
     commonjsOptions: {
-      transformMixedEsModules: true, // Transform CommonJS to ESM
+      transformMixedEsModules: true,
     },
   },
   optimizeDeps: {
-    include: ['react', 'react-dom'], // Remove pica since we'll load it from CDN
+    include: ['react', 'react-dom'],
     force: true,
   },
   esbuild: {
