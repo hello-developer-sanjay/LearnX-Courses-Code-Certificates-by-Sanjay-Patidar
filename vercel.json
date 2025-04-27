@@ -1,20 +1,49 @@
 {
   "headers": [
     {
-      "source": "/assets/*.wasm",
+      "source": "/assets/*.(png|jpg|jpeg|gif|webp)",
       "headers": [
         {
           "key": "Content-Type",
-          "value": "application/wasm"
+          "value": "image/*"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Content-Encoding",
+          "value": "br"
         }
       ]
     },
     {
-      "source": "/assets/*.(js|css|html|png|jpg|jpeg|gif|webp|mp4|mpeg|webm)",
+      "source": "/assets/*.(mp4|mpeg|webm)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "video/*"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Content-Encoding",
+          "value": "br"
+        }
+      ]
+    },
+    {
+      "source": "/assets/*.(js|css|html)",
       "headers": [
         {
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Content-Encoding",
+          "value": "br"
         }
       ]
     },
