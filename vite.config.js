@@ -14,7 +14,7 @@ export default defineConfig({
       includeAssets: ['**/*.js', '**/*.css', '**/*.html', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.webp', '**/*.mp4', '**/*.mpeg', '**/*.webm'],
       workbox: {
         globPatterns: ['**/*.{js,css,html,png,jpg,jpeg,gif,webp,mp4,mpeg,webm}'],
-        maximumFileSizeToCacheInBytes: 3 * 1024 * 1024, // Set to 3 MB (3,145,728 bytes)
+        maximumFileSizeToCacheInBytes: 3 * 1024 * 1024, // 3 MB
       },
     }),
   ],
@@ -33,14 +33,36 @@ export default defineConfig({
     commonjsOptions: {
       transformMixedEsModules: true,
     },
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom', 'redux', 'react-redux'],
+          codemirror: [
+            '@uiw/react-codemirror',
+            '@codemirror/lang-javascript',
+            '@codemirror/lang-python',
+            '@codemirror/lang-css',
+            '@codemirror/lang-html',
+            '@codemirror/lang-markdown',
+            '@codemirror/commands',
+            '@codemirror/view',
+            '@codemirror/autocomplete',
+            '@codemirror/theme-one-dark',
+            '@uiw/codemirror-theme-dracula',
+          ],
+          animations: ['framer-motion'],
+        },
+      },
+    },
   },
   optimizeDeps: {
-    include: ['react', 'react-dom'],
+    include: ['react', 'react-dom', '@uiw/react-codemirror', '@codemirror/lang-javascript'],
     force: true,
   },
   esbuild: {
     jsxFactory: 'React.createElement',
     jsxFragment: 'React.Fragment',
+    charset: 'utf8', // Ensure UTF-8 encoding
   },
   server: {
     fs: {
