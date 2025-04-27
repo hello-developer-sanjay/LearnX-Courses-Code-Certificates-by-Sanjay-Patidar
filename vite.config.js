@@ -1,18 +1,16 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { visualizer } from 'rollup-plugin-visualizer';
-import viteCompression from 'vite-plugin-compression';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
   plugins: [
     react(),
-    viteCompression({ algorithm: 'brotliCompress' }), // Changed to Brotli for better compression
     visualizer({ open: true, filename: 'dist/stats.html' }),
     VitePWA({
-      includeAssets: ['**/*.js', '**/*.css', '**/*.html'], // Removed media assets (handled by CloudFront)
+      includeAssets: ['**/*.js', '**/*.css', '**/*.html'],
       workbox: {
-        globPatterns: ['**/*.{js,css,html}'], // Match only JS/CSS/HTML for service worker
+        globPatterns: ['**/*.{js,css,html}'],
         runtimeCaching: [
           {
             urlPattern: /\.(?:png|jpg|jpeg|gif|webp|mp4|mpeg|webm)$/,
@@ -60,9 +58,9 @@ export default defineConfig({
             '@uiw/codemirror-theme-dracula',
           ],
           animations: ['framer-motion'],
-          syntax: ['react-syntax-highlighter'], // Added for PostPage.jsx
-          zoom: ['react-medium-image-zoom'], // Added for PostPage.jsx
-          toast: ['react-toastify'], // Added for PostPage.jsx
+          syntax: ['react-syntax-highlighter'],
+          zoom: ['react-medium-image-zoom'],
+          toast: ['react-toastify'],
         },
       },
     },
