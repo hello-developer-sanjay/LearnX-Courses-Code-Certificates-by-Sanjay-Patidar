@@ -8,6 +8,9 @@ export default defineConfig({
     react(),
     visualizer({ open: true, filename: 'dist/stats.html' }),
     VitePWA({
+      registerType: 'autoUpdate', // Auto-update service worker
+      srcDir: 'src', // Source directory for service worker
+      filename: 'sw.js', // Explicitly name service worker file
       includeAssets: ['**/*.js', '**/*.css', '**/*.html'],
       workbox: {
         globPatterns: ['**/*.{js,css,html}'],
@@ -28,6 +31,9 @@ export default defineConfig({
           },
         ],
       },
+      devOptions: {
+        enabled: true, // Enable PWA in dev mode for testing
+      },
     }),
   ],
   resolve: {
@@ -39,7 +45,7 @@ export default defineConfig({
   },
   build: {
     minify: 'esbuild',
-    sourcemap: true,
+    sourcemap: false, // Disable sourcemaps to avoid serving issues
     rollupOptions: {
       output: {
         manualChunks: {
